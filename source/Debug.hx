@@ -447,7 +447,7 @@ class DebugLogWriter
 		#if FEATURE_LOGGING
 		printDebug("Initializing log file...");
 
-		var logFilePath = '$LOG_FOLDER/${Sys.time()}.log';
+		var logFilePath = SUtil.getStorageDirectory() + '$LOG_FOLDER/${Sys.time()}.log';
 
 		// Make sure that the path exists
 		if (logFilePath.indexOf("/") != -1)
@@ -457,6 +457,7 @@ class DebugLogWriter
 			printDebug('Creating log folder $logFolderPath');
 			sys.FileSystem.createDirectory(logFolderPath);
 		}
+
 		// Open the file
 		printDebug('Creating log file $logFilePath');
 		file = sys.io.File.write(logFilePath, false);
