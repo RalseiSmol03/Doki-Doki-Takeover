@@ -7,7 +7,7 @@ import android.widget.Toast;
 import haxe.CallStack;
 import haxe.io.Path;
 import lime.system.System as LimeSystem;
-import openfl.utils.Assets as LimeAssets;
+import lime.utils.Assets as LimeAssets;
 import openfl.Lib;
 import openfl.events.UncaughtErrorEvent;
 import openfl.system.System as OpenFlSystem;
