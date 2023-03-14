@@ -48,8 +48,8 @@ class MusicBeatSubstate extends FlxSubState
 		add(virtualPad);
 
 		controls.setVirtualPadUI(virtualPad, DPad, Action);
-		trackedInputsVirtualPad = controls.trackedInputsUI;
-		controls.trackedInputsUI = [];
+		trackedInputsVirtualPad = controls.trackedInputs;
+		controls.trackedInputs = [];
 	}
 
 	public function addVirtualPadCamera(DefaultDrawTarget:Bool = true):Void
