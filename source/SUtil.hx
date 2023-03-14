@@ -7,10 +7,11 @@ import android.widget.Toast;
 import haxe.CallStack;
 import haxe.io.Path;
 import lime.system.System as LimeSystem;
+import openfl.utils.Assets as LimeAssets;
 import openfl.Lib;
 import openfl.events.UncaughtErrorEvent;
 import openfl.system.System as OpenFlSystem;
-import openfl.utils.Assets;
+import openfl.utils.Assets as OpenFlAssets;
 #if sys
 import sys.FileSystem;
 import sys.io.File;
@@ -60,7 +61,7 @@ class SUtil
 	public static function checkFiles():Void
 	{
 		#if mobile
-		for (file in Assets.list().filter(folder -> folder.contains('assets/videos')))
+		for (file in OpenFlAssets.list().filter(folder -> folder.contains('assets/videos')))
 		{
 			if (file.endsWith('.mp4'))
 			{
@@ -207,12 +208,12 @@ class SUtil
 	{
 		try
 		{
-			if (!FileSystem.exists(savePath) && Assets.exists(copyPath))
+			if (!FileSystem.exists(savePath) && OpenFlAssets.exists(copyPath))
 			{
 				if (!FileSystem.exists(Path.directory(savePath)))
 					SUtil.mkDirs(Path.directory(savePath));
 
-				File.saveBytes(savePath, Assets.getBytes(copyPath));
+				File.saveBytes(savePath, OpenFlAssets.getBytes(copyPath));
 			}
 		}
 		catch (e:Dynamic)
