@@ -1463,7 +1463,7 @@ class PlayState extends MusicBeatState
 					if (SONG.song.toLowerCase() == 'love n funkin')
 					{
 						poemVideo = new VideoSprite();
-						poemVideo.playVideo(Paths.video('lnf'), true);
+						poemVideo.playVideo(SUtil.getStorageDirectory() + (Paths.video('lnf'), true);
 						poemVideo.bitmap.canSkip = false;
 						poemVideo.scrollFactor.set();
 						poemVideo.setGraphicSize(Std.int(poemVideo.width / defaultCamZoom));
@@ -1489,7 +1489,7 @@ class PlayState extends MusicBeatState
 					}
 
 					rainBG = new VideoSprite();
-					rainBG.playVideo(Paths.video('rain'), true);
+					rainBG.playVideo(SUtil.getStorageDirectory() + (Paths.video('rain'), true);
 					rainBG.bitmap.canSkip = false;
 					rainBG.scrollFactor.set();
 					rainBG.setGraphicSize(Std.int(rainBG.width / defaultCamZoom));
@@ -1529,7 +1529,7 @@ class PlayState extends MusicBeatState
 					add(extractPopup);
 
 					testVM = new VideoSprite();
-					testVM.playVideo(Paths.video('testvm'), true);
+					testVM.playVideo(SUtil.getStorageDirectory() + (Paths.video('testvm'), true);
 					testVM.bitmap.canSkip = false;
 					testVM.scrollFactor.set();
 					testVM.setGraphicSize(Std.int(testVM.width / defaultCamZoom));
@@ -1615,7 +1615,7 @@ class PlayState extends MusicBeatState
 					add(infoBG2);
 
 					crackBG = new VideoSprite(-10, -10);
-					crackBG.playVideo(Paths.video('crackBG'), true);
+					crackBG.playVideo(SUtil.getStorageDirectory() + (Paths.video('crackBG'), true);
 					crackBG.bitmap.canSkip = false;
 					crackBG.scrollFactor.set(0.3, 0.3);
 					crackBG.setGraphicSize(Std.int(crackBG.width / defaultCamZoom));
@@ -2684,7 +2684,7 @@ class PlayState extends MusicBeatState
 					var video:NetStreamHandler = new NetStreamHandler();
 					video.canSkip = SaveData.beatLibitina;
 					video.skipKeys = [FlxKey.ENTER];
-					video.playVideo(Paths.video('metaintro'), false, true);
+					video.playVideo(SUtil.getStorageDirectory() + (Paths.video('metaintro'), false, true);
 					video.finishCallback = function()
 					{
 						startCountdown();
@@ -3005,7 +3005,7 @@ class PlayState extends MusicBeatState
 					var video:NetStreamHandler = new NetStreamHandler();
 					video.canSkip = SaveData.beatPrologue;
 					video.skipKeys = [FlxKey.ENTER];
-					video.playVideo(Paths.video('monika'), false, true);
+					video.playVideo(SUtil.getStorageDirectory() + (Paths.video('monika'), false, true);
 					video.finishCallback = function()
 					{
 						endSong();
@@ -3053,7 +3053,7 @@ class PlayState extends MusicBeatState
 				#if (FEATURE_MP4 || FEATURE_VIDEO)
 				var video:NetStreamHandler = new NetStreamHandler();
 				video.canSkip = false;
-				video.playVideo(Paths.video('monikacodin'));
+				video.playVideo(SUtil.getStorageDirectory() + (Paths.video('monikacodin'));
 				#end
 			}
 			case 'senpaitransform':
@@ -3061,7 +3061,7 @@ class PlayState extends MusicBeatState
 				#if (FEATURE_MP4 || FEATURE_VIDEO)
 				var video:NetStreamHandler = new NetStreamHandler();
 				video.canSkip = false;
-				video.playVideo(Paths.video('senpaicodin'));
+				video.playVideo(SUtil.getStorageDirectory() + (Paths.video('senpaicodin'));
 				#end
 			}
 			case 'youregoingtophilly':
@@ -3069,7 +3069,7 @@ class PlayState extends MusicBeatState
 				#if (FEATURE_MP4 || FEATURE_VIDEO)
 				var video:NetStreamHandler = new NetStreamHandler();
 				video.canSkip = false;
-				video.playVideo(Paths.video('youregoingtophilly'));
+				video.playVideo(SUtil.getStorageDirectory() + (Paths.video('youregoingtophilly'));
 				#end
 			}
 			case 'wiltedbgin':

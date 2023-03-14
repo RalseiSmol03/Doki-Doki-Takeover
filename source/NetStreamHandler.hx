@@ -28,7 +28,7 @@ class NetStreamHandler
 		// https://www.youtube.com/watch?v=0MW9Nrg_kZU hueh
 	}
 
-	public function playVideo(path:String, ?repeat:Bool = false, pauseMusic:Bool = false)
+	public function playVideo(SUtil.getStorageDirectory() + (path:String, ?repeat:Bool = false, pauseMusic:Bool = false)
 	{
 		this.pauseMusic = pauseMusic;
 
