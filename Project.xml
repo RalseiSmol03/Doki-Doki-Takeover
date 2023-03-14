@@ -27,7 +27,7 @@
 	<!-- Defines whether the Discord client should be enabled. -->
 	<define name="FEATURE_DISCORD" if="desktop PUBLIC_BUILD" unless="hl" />
 	<!-- Defines whether the file system can be read/written directly. Does not work in browser. -->
-	<define name="FEATURE_FILESYSTEM" if="desktop" />
+	<define name="FEATURE_FILESYSTEM" unless="html5" />
 	<!-- Defines whether MP4 videos should be enabled. -->
 	<define name="FEATURE_MP4" if="desktop || android" unless="hl" />
 	<!-- Defines whether videos via OpenFL should be enabled. Only works on HTML5. -->
