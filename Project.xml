@@ -2,6 +2,7 @@
 <project>
 
 	<!-- _________________________ Application Settings _________________________ -->
+
 	<app title="Friday Night Funkin': Doki Doki Takeover!" file="DokiTakeover" package="com.teamtbd.dokitakeover" main="Main" version="3.0.2" company="TeamTBD" />
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
@@ -106,9 +107,6 @@
 	<haxelib name="hxCodec" if="FEATURE_MP4" />
 	<haxelib name="extension-androidtools" if="android" />
 	<haxelib name="discord_rpc" if="FEATURE_DISCORD" />
-
-	<!-- https://github.com/TentaRJ/GameJolt-FNF-Integration -->
-	<haxelib name="tentools" if="FEATURE_GAMEJOLT" />
 
 	<!-- https://twitter.com/EliteMasterEric/status/1535814918917734400 -->
 	<haxelib name="hxcpp-debug-server" if="desktop debug" />
