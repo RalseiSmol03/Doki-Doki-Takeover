@@ -14,16 +14,6 @@ import lime.app.Application;
 import Discord.DiscordClient;
 #end
 
-// crash handler stuff
-#if CRASH_HANDLER
-import openfl.events.UncaughtErrorEvent;
-import haxe.CallStack;
-import haxe.io.Path;
-import sys.FileSystem;
-import sys.io.File;
-import sys.io.Process;
-#end
-
 using StringTools;
 
 class Main extends Sprite
@@ -42,38 +32,14 @@ class Main extends Sprite
 
 	// You can pretty much ignore everything from here on - your code should go in your states.
 
-	public static function main():Void
-	{
-		// quick checks
-		Lib.current.addChild(new Main());
-	}
-
-	public function new()
+	public function new():Void
 	{
 		super();
 
-		if (stage != null)
-		{
-			init();
-		}
-		else
-		{
-			addEventListener(Event.ADDED_TO_STAGE, init);
-		}
-	}
+		#if CRASH_HANDLER
+		SUtil.uncaughtErrorHandler();
+		#end
 
-	private function init(?E:Event):Void
-	{
-		if (hasEventListener(Event.ADDED_TO_STAGE))
-		{
-			removeEventListener(Event.ADDED_TO_STAGE, init);
-		}
-
-		setupGame();
-	}
-
-	private function setupGame():Void
-	{
 		// Run this first so we can see logs.
 		Debug.onInitProgram();
 
@@ -95,6 +61,8 @@ class Main extends Sprite
 		}
 		#end
 
+		SUtil.checkFiles();
+
 		game = new FlxGame(gameWidth, gameHeight, initialState, #if (flixel < "5.0.0") zoom, #end framerate, framerate, skipSplash, startFullscreen);
 		addChild(game);
 
@@ -103,10 +71,6 @@ class Main extends Sprite
 
 		if (fpsVar != null)
 			fpsVar.visible = SaveData.showFPS;
-
-		#if CRASH_HANDLER
-		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
-		#end
 
 		// Finish up loading debug tools.
 		// NOTE: Causes Hashlink to crash, so it's disabled.
@@ -123,51 +87,4 @@ class Main extends Sprite
 		return false;
 		#end
 	}
-
-	// Code was entirely made by sqirra-rng for their fnf engine named "Izzy Engine", big props to them!!!
-	// very cool person for real they don't get enough credit for their work
-	#if CRASH_HANDLER
-	function onCrash(e:UncaughtErrorEvent):Void
-	{
-		var errMsg:String = "";
-		var path:String;
-		var callStack:Array<StackItem> = CallStack.exceptionStack(true);
-		var dateNow:String = Date.now().toString();
-
-		dateNow = dateNow.replace(" ", "_");
-		dateNow = dateNow.replace(":", "'");
-
-		path = './crash/DDTO_$dateNow.txt';
-
-		for (stackItem in callStack)
-		{
-			switch (stackItem)
-			{
-				case FilePos(s, file, line, column):
-					errMsg += file + " (line " + line + ")\n";
-				default:
-					Sys.println(stackItem);
-			}
-		}
-
-		errMsg += "\nUncaught Error: "
-			+ e.error
-			+ "\nPlease report this error to the GitHub page: https://github.com/Jorge-SunSpirit/Doki-Doki-Takeover\n\n> Crash Handler written by: sqirra-rng";
-			//+ "\nPlease report this error to #playtest-qa-testing.\n\n> Crash Handler written by: sqirra-rng";
-
-		if (!FileSystem.exists("./crash/"))
-			FileSystem.createDirectory("./crash/");
-
-		File.saveContent(path, errMsg + "\n");
-
-		Sys.println(errMsg);
-		Sys.println("Crash dump saved in " + Path.normalize(path));
-
-		Application.current.window.alert(errMsg, "Error!");
-		#if FEATURE_DISCORD
-		DiscordClient.shutdown();
-		#end
-		Sys.exit(1);
-	}
-	#end
 }
