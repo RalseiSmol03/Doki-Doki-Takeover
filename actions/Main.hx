@@ -38,6 +38,7 @@ class Main
 			}
 		}
 
+		Sys.command('haxelib list');
 		Sys.exit(0); // shutting this down
 	}
 }
