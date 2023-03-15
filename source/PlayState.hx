@@ -4834,7 +4834,7 @@ class PlayState extends MusicBeatState
 		if (SaveData.npsDisplay)
 			scoreTxt.text = Ratings.CalculateRanking((practiceMode ? practiceScore : songScore), nps, maxNPS, accuracy);
 
-		if (controls.PAUSE && startedCountdown && canPause)
+		if ((controls.PAUSE #if android || FlxG.android.justReleased.BACK #end) && startedCountdown && canPause)
 			pauseState();
 
 		if (FlxG.keys.justPressed.F7 #if !debug && SaveData.unlockedEpiphany #end)
