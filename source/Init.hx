@@ -14,6 +14,10 @@ class Init extends MusicBeatState
 {
 	override function create()
 	{
+		#if android
+		FlxG.android.preventDefaultKeys = [BACK];
+		#end
+
 		SaveData.init();
 		CoolUtil.setFPSCap(SaveData.framerate);
 		KeyBinds.gamepad = FlxG.gamepads.lastActive != null;
