@@ -201,19 +201,27 @@ class DialogueBox extends FlxSpriteGroup
 
 		if (canSkip && !playingCutscene)
 		{
-			if (PlayerSettings.player1.controls.BACK && !stopspamming && canFullSkip && !playingCutscene && dialogueStarted)
+			if ((PlayerSettings.player1.controls.BACK#if android || FlxG.android.justReleased.BACK #end) && !stopspamming && canFullSkip && !playingCutscene && dialogueStarted)
 			{
 				isEnding = true;
 				stopspamming = true;
 				endinstantly();
 			}
+
+			#if mobile
+			var justTouched:Bool = false;
+
+			for (touch in FlxG.touches.list)
+				if (touch.justPressed)
+					justTouched = true;
+			#end
 	
-			if (PlayerSettings.player1.controls.ACCEPT && dialogueEnded)
+			if ((PlayerSettings.player1.controls.ACCEPT #if android || justTouched #end) && dialogueEnded)
 			{
 				FlxG.sound.play(Paths.sound('clickText'), 0.8);
 				enddialogue();
 			}
-			else if (PlayerSettings.player1.controls.ACCEPT && dialogueStarted)
+			else if ((PlayerSettings.player1.controls.ACCEPT #if android || justTouched #end) && dialogueStarted)
 			{
 				swagDialogue.skip();
 			}
