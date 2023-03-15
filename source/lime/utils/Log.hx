@@ -42,6 +42,7 @@ class Log
 
 			if (throwErrors)
 			{
+				#if CRASH_HANDLER
 				#if sys
 				try
 				{
@@ -66,8 +67,11 @@ class Log
 				#end
 
 				println(message);
-				Lib.application.window.alert(message, 'Some shit happened');
+				Lib.application.window.alert(message, 'Error!');
 				System.exit(1);
+				#else
+				throw message;
+				#end
 			}
 			else
 			{
