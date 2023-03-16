@@ -74,6 +74,10 @@ class CatfightPopup extends MusicBeatSubstate
 
 		new FlxTimer().start(0.2, function(tmr:FlxTimer)
 		{
+			#if mobile
+			addVirtualPad(LEFT_RIGHT, A_B);
+			addVirtualPadCamera();
+			#end
 			canpressbuttons = true;
 		});
 
