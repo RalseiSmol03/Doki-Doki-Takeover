@@ -45,7 +45,7 @@ class OptionsState extends MusicBeatState
 		]),
 		new OptionCategory(LangUtil.getString('catAppearance', 'option'), [
 			new FPSOption(LangUtil.getString('descFPSCount', 'option')),
-			#if html5
+			#if (html5 || mobile)
 			new AntiAliasing(LangUtil.getString('descAntialiasing', 'option')),
 			#end
 			new Shaders(LangUtil.getString('descShaders', 'option')),
