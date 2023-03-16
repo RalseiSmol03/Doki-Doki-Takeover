@@ -57,7 +57,15 @@ class ThankyouState extends MusicBeatState
 	{
 		super.update(elapsed);
 
-		if (controls.ACCEPT && !selectedsomething)
+		var pressedEnter:Bool = controls.ACCEPT;
+
+		#if mobile
+		for (touch in FlxG.touches.list)
+			if (touch.justPressed)
+				pressedEnter = true;
+		#end
+
+		if (pressedEnter && !selectedsomething)
 		{
 			selectedsomething = true;
 			FlxTween.tween(funnynote, {alpha: 0}, 2, {
