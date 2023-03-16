@@ -323,7 +323,7 @@ class Paths
 		if (OpenFlAssets.exists(assetPath, SOUND))
 		{
 			if (!currentTrackedSounds.exists(gottenPath))
-				currentTrackedSounds.set(gottenPath, OpenFlAssets.getSound(assetPath))
+				currentTrackedSounds.set(gottenPath, OpenFlAssets.getSound(assetPath));
 
 			if (!localTrackedAssets.contains(gottenPath))
 				localTrackedAssets.push(gottenPath);
