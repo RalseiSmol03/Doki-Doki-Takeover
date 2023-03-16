@@ -20,7 +20,7 @@ class Init extends MusicBeatState
 
 		SaveData.init();
 		CoolUtil.setFPSCap(SaveData.framerate);
-		KeyBinds.gamepad = FlxG.gamepads.lastActive != null;
+		KeyBinds.gamepad = #if mobile true #else FlxG.gamepads.lastActive != null #end;
 
 		if (Main.fpsVar == null)
 		{
