@@ -2470,6 +2470,11 @@ class PlayState extends MusicBeatState
 
 		metadataDisplay.cameras = [camOverlay];
 
+		#if mobile
+		addHitbox(false);
+		addHitboxCamera();
+		#end
+
 		if (curStage == 'dokiclubroom' || curStage == 'dokifestival')
 			add(staticshock);
 
@@ -3638,6 +3643,9 @@ class PlayState extends MusicBeatState
 
 		startingSong = false;
 		songStarted = true;
+		#if mobile
+		hitbox.visible = true;
+		#end
 		previousFrameTime = FlxG.game.ticks;
 
 		FlxG.sound.playMusic(Paths.inst(SONG.song), 1, false);
@@ -5212,6 +5220,9 @@ class PlayState extends MusicBeatState
 
 	function endSong():Void
 	{
+		#if mobile
+		hitbox.visible = false;
+		#end
 		positionDisplay.visible = false;
 		endingSong = true;
 		sectionStart = false;
@@ -5807,7 +5818,7 @@ class PlayState extends MusicBeatState
 			});
 		}
 
-		if (KeyBinds.gamepad && !FlxG.keys.pressed.ANY)
+		if (#if mobile !FlxG.keys.pressed.ANY #else KeyBinds.gamepad && !FlxG.keys.pressed.ANY #end)
 		{
 			if (pressArray.contains(true))
 			{
