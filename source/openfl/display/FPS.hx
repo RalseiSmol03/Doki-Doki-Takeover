@@ -49,7 +49,11 @@ class FPS extends TextField
 		currentFPS = 0;
 		selectable = false;
 		mouseEnabled = false;
-		defaultTextFormat = new TextFormat("_sans", 14, color, true);
+		#if mobile
+		defaultTextFormat = new TextFormat('_sans', Std.int(14 * Math.min(Lib.current.stage.stageWidth / FlxG.width, Lib.current.stage.stageHeight / FlxG.height)), color, true);
+		#else
+		defaultTextFormat = new TextFormat('_sans', 14, color, true);
+		#end
 		autoSize = LEFT;
 		multiline = true;
 		text = "FPS: ";
@@ -63,6 +67,14 @@ class FPS extends TextField
 		{
 			var time = Lib.getTimer();
 			__enterFrame(time - currentTime);
+		});
+		#end
+		#if mobile
+		addEventListener(Event.RESIZE, function(e)
+		{
+			final daSize:Int = Std.int(14 * Math.min(Lib.current.stage.stageWidth / FlxG.width, Lib.current.stage.stageHeight / FlxG.height));
+			if (defaultTextFormat.size != daSize)
+				defaultTextFormat.size = daSize;
 		});
 		#end
 	}
