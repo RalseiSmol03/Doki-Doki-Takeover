@@ -317,20 +317,23 @@ class Paths
 
 	public static function returnSound(path:String, key:String, ?library:String)
 	{
-		var gottenPath:String = getPath('$path/$key.$SOUND_EXT', SOUND, library);
-		gottenPath = gottenPath.substring(gottenPath.indexOf(':') + 1, gottenPath.length);
+		var path:String = getPath(path == 'songs' ? '$key.$SOUND_EXT' : '$path/$key.$SOUND_EXT', SOUND, path == 'songs' ? path : library);
+		var gottenPath:String = path.substring(path.indexOf(':') + 1, path.length);
 
-		if (!currentTrackedSounds.exists(gottenPath))
+		if (OpenFlAssets.exists(path, IMAGE))
 		{
-			if (OpenFlAssets.exists(getPath('$path/$key.$SOUND_EXT', SOUND, library)))
-				currentTrackedSounds.set(gottenPath, OpenFlAssets.getSound(getPath('$path/$key.$SOUND_EXT', SOUND, library)));
-			else
-				currentTrackedSounds.set(gottenPath, Sound.fromFile('./' + gottenPath));
+			if (!currentTrackedSounds.exists(gottenPath))
+				currentTrackedSounds.set(gottenPath, OpenFlAssets.getSound(path))
+
+			if (!localTrackedAssets.contains(gottenPath))
+				localTrackedAssets.push(gottenPath);
+
+			return currentTrackedSounds.get(gottenPath);
 		}
-
-		if (!localTrackedAssets.contains(gottenPath))
-			localTrackedAssets.push(gottenPath);
-
-		return currentTrackedSounds.get(gottenPath);
+		else
+		{
+			trace('"$key" returned null');
+			return null;
+		}
 	}
 }
