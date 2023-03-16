@@ -317,13 +317,13 @@ class Paths
 
 	public static function returnSound(path:String, key:String, ?library:String)
 	{
-		var path:String = getPath(path == 'songs' ? '$key.$SOUND_EXT' : '$path/$key.$SOUND_EXT', SOUND, path == 'songs' ? path : library);
+		var assetPath:String = getPath(path == 'songs' ? '$key.$SOUND_EXT' : '$path/$key.$SOUND_EXT', SOUND, path == 'songs' ? path : library);
 		var gottenPath:String = path.substring(path.indexOf(':') + 1, path.length);
 
-		if (OpenFlAssets.exists(path, IMAGE))
+		if (OpenFlAssets.exists(assetPath, IMAGE))
 		{
 			if (!currentTrackedSounds.exists(gottenPath))
-				currentTrackedSounds.set(gottenPath, OpenFlAssets.getSound(path))
+				currentTrackedSounds.set(gottenPath, OpenFlAssets.getSound(assetPath))
 
 			if (!localTrackedAssets.contains(gottenPath))
 				localTrackedAssets.push(gottenPath);
