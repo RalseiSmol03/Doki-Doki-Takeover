@@ -170,6 +170,11 @@ class CoolUtil
 	**/
 	public static function flixelSaveCheck(company:String, title:String, localPath:String = 'ninjamuffin99', name:String = 'funkin', newPath:Bool = false):Bool
 	{
+		// I'm doing this thing because people might not have that app installed on thier phone.
+		// So to return true is the best way in my opinion because of that.
+		#if mobile
+		return true;
+		#else
 		// before anyone asks, this is copy-pasted from FlxSave
 		var invalidChars = ~/[ ~%&\\;:"',<>?#]+/;
 
@@ -229,6 +234,7 @@ class CoolUtil
 		}
 
 		return FileSystem.exists(path + name + ".sol");
+		#end
 	}
 
 	/**
