@@ -51,6 +51,11 @@ class CloseGameSubState extends MusicBeatSubstate
 		add(selectGrp);
 
 		changeItem();
+
+		#if mobile
+		addVirtualPad(LEFT_RIGHT, A_B);
+		addVirtualPadCamera();
+		#end
 	}
 
 	override function update(elapsed:Float):Void
