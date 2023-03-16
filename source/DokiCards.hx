@@ -78,6 +78,10 @@ class DokiCards extends MusicBeatSubstate
 
 		new FlxTimer().start(0.5, function(tmr:FlxTimer)
 		{
+			#if mobile
+			addHitbox();
+			addHitboxCamera();
+			#end
 			acceptInput = true;
 		});
 
@@ -106,6 +110,9 @@ class DokiCards extends MusicBeatSubstate
 	{
 		huehTimer.cancel();
 		//tween the cards away except the selected card
+		#if mobile
+		hitbox.visible = false;
+		#end
 		acceptInput = false;
 		funnyChar = who;
 		curSelected = num;
