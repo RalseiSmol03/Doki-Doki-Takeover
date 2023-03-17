@@ -24,18 +24,18 @@ class BloomShader extends FlxShader // Taken from BBPanzu anime mod hueh
 	void mainImage() {
 
     vec2 uv = fragCoord / iResolution.xy;
-    fragColor = texture2D(iChannel0, uv);
+    fragColor = texture(iChannel0, uv);
     
     for (float i = -funrange; i < funrange; i += funsteps) {
     
         float falloff = 1.0 - abs(i / funrange);
     
-        vec4 blur = texture2D(iChannel0, uv + i);
+        vec4 blur = texture(iChannel0, uv + i);
         if (blur.r + blur.g + blur.b > funthreshhold * 3.0) {
             fragColor += blur * falloff * funsteps * funbrightness;
         }
         
-        blur = texture2D(iChannel0, uv + vec2(i, -i));
+        blur = texture(iChannel0, uv + vec2(i, -i));
         if (blur.r + blur.g + blur.b > funthreshhold * 3.0) {
             fragColor += blur * falloff * funsteps * funbrightness;
         }
