@@ -134,6 +134,9 @@ class MusicBeatState extends FlxUIState
 
 		FlxTransitionableState.skipNextTransOut = false;
 
+		// Advance the random seed.
+		Random.advance();
+
 		super.create();
 	}
 

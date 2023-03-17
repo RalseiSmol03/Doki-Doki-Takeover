@@ -253,7 +253,7 @@ class CoolUtil
 		#if linux 
 		renpy = '.renpy';
 		path = haxe.io.Path.normalize('${Sys.getEnv("HOME")}/$renpy/$doki') + "/";
-		#elseif mac
+		#elseif macos
 		path = haxe.io.Path.normalize('$directory/../../../../$renpy/$doki') + "/";
 		#else
 		path = haxe.io.Path.normalize('$directory/../../../$renpy/$doki') + "/";
@@ -265,6 +265,7 @@ class CoolUtil
 
 	/**
 		Check for an existing Doki Doki Literature Club Plus! save file.
+		TODO: Add paths for Mac. Linux can't be added as there's no native Linux version, it runs through Proton instead.
 	**/
 	public static function ddlcpSaveCheck():Bool
 	{
@@ -284,12 +285,16 @@ class CoolUtil
 		{
 			#if windows
 			return Sys.environment()["USERNAME"].trim();
-			#elseif linux
+			#elseif (linux || macos)
 			return Sys.environment()["USER"].trim();
+			#else
+			return coolText(Paths.txt('data/name', 'preload'));
 			#end
 		}
 		else
+		{
 			return coolText(Paths.txt('data/name', 'preload'));
+		}
 		#elseif FEATURE_GAMEJOLT
 		if (SaveData.selfAware && !GameJoltAPI.getUserInfo(true).toLowerCase().contains('no user'))
 			return GameJoltAPI.getUserInfo(true).trim();
