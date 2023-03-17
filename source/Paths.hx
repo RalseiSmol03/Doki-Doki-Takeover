@@ -275,7 +275,7 @@ class Paths
 		var assetPath:String = getPath('images/$key.png', IMAGE, library);
 		var gottenPath:String = assetPath.substring(assetPath.indexOf(':') + 1, assetPath.length);
 
-		if (OpenFlAssets.exists(gottenPath, IMAGE))
+		if (OpenFlAssets.exists(assetPath, IMAGE))
 		{
 			if (!currentTrackedAssets.exists(gottenPath))
 			{
