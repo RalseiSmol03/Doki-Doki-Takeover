@@ -72,6 +72,9 @@ class DokiCards extends MusicBeatSubstate
 
 		huehTimer = new FlxTimer().start(8, function(swagTimer:FlxTimer)
 		{
+			#if mobile
+			removeHitbox();
+			#end
 			acceptInput = false;
 			charSelected(funnyChar);
 		});
