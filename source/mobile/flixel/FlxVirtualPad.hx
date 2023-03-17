@@ -5,6 +5,7 @@ import flixel.graphics.FlxGraphic;
 import flixel.graphics.frames.FlxTileFrames;
 import flixel.group.FlxSpriteGroup;
 import flixel.math.FlxPoint;
+import flixel.util.FlxColor;
 import flixel.util.FlxDestroyUtil;
 import mobile.flixel.FlxButton;
 import openfl.utils.Assets;
@@ -68,25 +69,25 @@ class FlxVirtualPad extends FlxSpriteGroup
 		switch (DPad)
 		{
 			case UP_DOWN:
-				add(buttonUp = createButton(0, FlxG.height - 255, 'up', 0x00FF00));
-				add(buttonDown = createButton(0, FlxG.height - 135, 'down', 0x00FFFF));
+				add(buttonUp = createButton(0, FlxG.height - 255, 'up', FlxColor.fromRGB(193, 255, 126)));
+				add(buttonDown = createButton(0, FlxG.height - 135, 'down', FlxColor.fromRGB(143, 239, 254)));
 			case LEFT_RIGHT:
-				add(buttonLeft = createButton(0, FlxG.height - 135, 'left', 0xFF00FF));
-				add(buttonRight = createButton(127, FlxG.height - 135, 'right', 0xFF0000));
+				add(buttonLeft = createButton(0, FlxG.height - 135, 'left', FlxColor.fromRGB(185, 150, 250)));
+				add(buttonRight = createButton(127, FlxG.height - 135, 'right', FlxColor.fromRGB(255, 170, 238)));
 			case UP_LEFT_RIGHT:
-				add(buttonUp = createButton(105, FlxG.height - 243, 'up', 0x00FF00));
-				add(buttonLeft = createButton(0, FlxG.height - 135, 'left', 0xFF00FF));
-				add(buttonRight = createButton(207, FlxG.height - 135, 'right', 0xFF0000));
+				add(buttonUp = createButton(105, FlxG.height - 243, 'up', FlxColor.fromRGB(193, 255, 126)));
+				add(buttonLeft = createButton(0, FlxG.height - 135, 'left', FlxColor.fromRGB(185, 150, 250)));
+				add(buttonRight = createButton(207, FlxG.height - 135, 'right', FlxColor.fromRGB(255, 170, 238)));
 			case LEFT_FULL:
-				add(buttonUp = createButton(105, FlxG.height - 345, 'up', 0x00FF00));
-				add(buttonLeft = createButton(0, FlxG.height - 243, 'left', 0xFF00FF));
-				add(buttonRight = createButton(207, FlxG.height - 243, 'right', 0xFF0000));
-				add(buttonDown = createButton(105, FlxG.height - 135, 'down', 0x00FFFF));
+				add(buttonUp = createButton(105, FlxG.height - 345, 'up', FlxColor.fromRGB(193, 255, 126)));
+				add(buttonLeft = createButton(0, FlxG.height - 243, 'left', FlxColor.fromRGB(185, 150, 250)));
+				add(buttonRight = createButton(207, FlxG.height - 243, 'right', FlxColor.fromRGB(255, 170, 238)));
+				add(buttonDown = createButton(105, FlxG.height - 135, 'down', FlxColor.fromRGB(143, 239, 254)));
 			case RIGHT_FULL:
-				add(buttonUp = createButton(FlxG.width - 258, FlxG.height - 408, 'up', 0x00FF00));
-				add(buttonLeft = createButton(FlxG.width - 384, FlxG.height - 309, 'left', 0xFF00FF));
-				add(buttonRight = createButton(FlxG.width - 132, FlxG.height - 309, 'right', 0xFF0000));
-				add(buttonDown = createButton(FlxG.width - 258, FlxG.height - 201, 'down', 0x00FFFF));
+				add(buttonUp = createButton(FlxG.width - 258, FlxG.height - 408, 'up', FlxColor.fromRGB(193, 255, 126)));
+				add(buttonLeft = createButton(FlxG.width - 384, FlxG.height - 309, 'left', FlxColor.fromRGB(185, 150, 250)));
+				add(buttonRight = createButton(FlxG.width - 132, FlxG.height - 309, 'right', FlxColor.fromRGB(255, 170, 238)));
+				add(buttonDown = createButton(FlxG.width - 258, FlxG.height - 201, 'down', FlxColor.fromRGB(143, 239, 254)));
 			case NONE: // do nothing
 		}
 
