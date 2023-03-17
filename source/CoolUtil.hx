@@ -263,8 +263,13 @@ class CoolUtil
 	**/
 	public static function ddlcpSaveCheck():Bool
 	{
+		// DDLC+ will not have a official mobile build so...
+		#if mobile
+		return true;
+		#else
 		var path = Sys.getEnv("userprofile") + '\\AppData\\LocalLow\\Team Salvato\\Doki Doki Literature Club Plus\\save_preferences.sav';
 		return FileSystem.exists(path);
+		#end
 	}
 
 	public static function getUsername():String
