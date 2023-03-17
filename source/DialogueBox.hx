@@ -120,7 +120,7 @@ class DialogueBox extends FlxSpriteGroup
 		bgFade.alpha = 0.0001;
 		add(bgFade);
 
-		if (Paths.fileExists('music/' + dialogueData.startingMusic + '.ogg', MUSIC, 'preload'))
+		if (Paths.fileExists('music/' + dialogueData.startingMusic + '.ogg', SOUND, 'preload'))
 		{
 			FlxG.sound.playMusic(Paths.music(dialogueData.startingMusic, 'preload'), 0.1);
 			FlxG.sound.music.fadeIn(1, 0, 0.8);

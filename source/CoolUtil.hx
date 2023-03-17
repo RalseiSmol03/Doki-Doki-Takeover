@@ -322,7 +322,7 @@ class CoolUtil
 	private static function precacheSoundFile(file:Dynamic):Void
 	{
 		#if !hl
-		if (Assets.exists(file, SOUND) || Assets.exists(file, MUSIC))
+		if (Assets.exists(file, SOUND) || Assets.exists(file, SOUND))
 			Assets.getSound(file, true);
 		#end
 	}

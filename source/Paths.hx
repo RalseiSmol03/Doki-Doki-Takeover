@@ -204,7 +204,7 @@ class Paths
 	inline static public function music(key:String, ?library:String):Dynamic
 	{
 		#if html5
-		return getPath('music/$key.$SOUND_EXT', MUSIC, library);
+		return getPath('music/$key.$SOUND_EXT', SOUND, library);
 		#else
 		var file:Sound = returnSound('music', key, library);
 		return file;

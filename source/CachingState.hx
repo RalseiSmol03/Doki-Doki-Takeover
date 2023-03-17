@@ -195,7 +195,7 @@ class CachingState extends MusicBeatState
 		{
 			Debug.logTrace('[SONG] Caching ${i.substring(0, i.length - 4)}');
 
-			var path:String = Paths.getPath(i, MUSIC, 'songs');
+			var path:String = Paths.getPath(i, SOUND, 'songs');
 			var key:String = path.substring(path.indexOf(':') + 1, path.length);
 
 			if (Paths.dumpExclusions.contains(key))
