@@ -242,6 +242,10 @@ class CoolUtil
 	**/
 	public static function renpySaveCheck(?doki:String = 'DDLC-1454445547'):Bool
 	{
+		// i think i don't have to explain why .__.
+		#if mobile
+		return true;
+		#else
 		var directory = lime.system.System.applicationStorageDirectory;
 		var renpy = 'RenPy';
 		var path = '';
@@ -256,6 +260,7 @@ class CoolUtil
 		#end
 
 		return FileSystem.exists(path + "persistent");
+		#end
 	}
 
 	/**
