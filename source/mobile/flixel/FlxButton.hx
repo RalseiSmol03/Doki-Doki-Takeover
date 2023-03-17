@@ -11,7 +11,11 @@ import flixel.input.FlxPointer;
 import flixel.input.IFlxInput;
 import flixel.input.touch.FlxTouch;
 import flixel.math.FlxPoint;
+#if (flixel >= "5.3.0")
+import flixel.sound.FlxSound;
+#else
 import flixel.system.FlxSound;
+#end
 import flixel.text.FlxText;
 import flixel.util.FlxDestroyUtil;
 
@@ -546,7 +550,7 @@ private class FlxButtonEvent implements IFlxDestroyable
 	 * @param   Callback   The callback function to call when this even fires.
 	 * @param   sound      The sound to play when this event fires.
 	 */
-	public function new(?Callback:Void->Void, ?sound:FlxSound)
+	public function new(?Callback:Void->Void, ?sound:FlxSound):Void
 	{
 		callback = Callback;
 
