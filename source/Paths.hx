@@ -287,7 +287,7 @@ class Paths
 				{
 					var newTexture:Texture = FlxG.stage.context3D.createTexture(newBitmap.width, newBitmap.height, BGRA, false);
 					newTexture.uploadFromBitmapData(newBitmap);
-					currentTrackedTextures.set(path, newTexture);
+					currentTrackedTextures.set(gottenPath, newTexture);
 					newBitmap.dispose();
 					newBitmap.disposeImage();
 					newBitmap = null;
