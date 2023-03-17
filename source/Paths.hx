@@ -272,13 +272,14 @@ class Paths
 
 	public static function returnGraphic(key:String, ?library:String)
 	{
-		var path:String = getPath('images/$key.png', IMAGE, library);
+		var assetPath:String = getPath('images/$key.png', IMAGE, library);
+		var gottenPath:String = assetPath.substring(assetPath.indexOf(':') + 1, assetPath.length);
 
-		if (OpenFlAssets.exists(path, IMAGE))
+		if (OpenFlAssets.exists(gottenPath, IMAGE))
 		{
-			if (!currentTrackedAssets.exists(path))
+			if (!currentTrackedAssets.exists(gottenPath))
 			{
-				var newBitmap:BitmapData = OpenFlAssets.getBitmapData(path);
+				var newBitmap:BitmapData = OpenFlAssets.getBitmapData(assetPath);
 
 				var newGraphic:FlxGraphic;
 
@@ -290,21 +291,21 @@ class Paths
 					newBitmap.dispose();
 					newBitmap.disposeImage();
 					newBitmap = null;
-					newGraphic = FlxG.bitmap.add(BitmapData.fromTexture(newTexture), false, path);
+					newGraphic = FlxG.bitmap.add(BitmapData.fromTexture(newTexture), false, gottenPath);
 				}
 				else
 				{
-					newGraphic = FlxG.bitmap.add(path, false, path);
+					newGraphic = FlxG.bitmap.add(assetPath, false, gottenPath);
 				}
 
 				newGraphic.persist = true;
-				currentTrackedAssets.set(path, newGraphic);
+				currentTrackedAssets.set(gottenPath, newGraphic);
 			}
 
-			if (!localTrackedAssets.contains(path))
-				localTrackedAssets.push(path);
+			if (!localTrackedAssets.contains(gottenPath))
+				localTrackedAssets.push(gottenPath);
 
-			return currentTrackedAssets.get(path);
+			return currentTrackedAssets.get(gottenPath);
 		}
 		else
 		{
