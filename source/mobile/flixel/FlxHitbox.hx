@@ -2,6 +2,7 @@ package mobile.flixel;
 
 import flixel.FlxG;
 import flixel.group.FlxSpriteGroup;
+import flixel.util.FlxColor;
 import flixel.util.FlxDestroyUtil;
 import openfl.display.BitmapData;
 import openfl.display.Shape;
@@ -27,10 +28,10 @@ class FlxHitbox extends FlxSpriteGroup
 	{
 		super();
 
-		add(buttonLeft = createHint(0, 0, Std.int(FlxG.width / 4), FlxG.height, 0xFF00FF));
-		add(buttonDown = createHint(FlxG.width / 4, 0, Std.int(FlxG.width / 4), FlxG.height, 0x00FFFF));
-		add(buttonUp = createHint(FlxG.width / 2, 0, Std.int(FlxG.width / 4), FlxG.height, 0x00FF00));
-		add(buttonRight = createHint((FlxG.width / 2) + (FlxG.width / 4), 0, Std.int(FlxG.width / 4), FlxG.height, 0xFF0000));
+		add(buttonLeft = createHint(0, 0, Std.int(FlxG.width / 4), FlxG.height, FlxColor.fromRGB(185, 150, 250)));
+		add(buttonDown = createHint(FlxG.width / 4, 0, Std.int(FlxG.width / 4), FlxG.height, FlxColor.fromRGB(143, 239, 254)));
+		add(buttonUp = createHint(FlxG.width / 2, 0, Std.int(FlxG.width / 4), FlxG.height, FlxColor.fromRGB(193, 255, 126)));
+		add(buttonRight = createHint((FlxG.width / 2) + (FlxG.width / 4), 0, Std.int(FlxG.width / 4), FlxG.height, FlxColor.fromRGB(255, 170, 238)));
 
 		scrollFactor.set();
 	}
