@@ -92,7 +92,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		{
 			FlxTween.cancelTweensOf(FlxG.camera);
 			FlxG.camera.zoom = 1;
-			var blueScreen = new FlxSprite().loadGraphic(Paths.image('LibiGameOver', 'preload', true));
+			var blueScreen = new FlxSprite().loadGraphic(Paths.image('LibiGameOver', 'preload'));
 			blueScreen.scrollFactor.set();
 			add(blueScreen);
 		}

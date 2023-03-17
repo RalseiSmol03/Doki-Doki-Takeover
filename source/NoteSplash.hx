@@ -25,7 +25,6 @@ class NoteSplash extends FlxSprite
 				antialiasing = false;
 			default:
 				frames = Paths.getSparrowAtlas('NOTE_splashes_doki');
-				allowRotation = true;
 				setPosition(x - 25, y - 25);
 		}
 
@@ -42,15 +41,15 @@ class NoteSplash extends FlxSprite
 		//setPosition(x - 25, y - 25);
 		alpha = 1;
 
-		flipX = Random.randBool(0.5);
+		flipX = FlxG.random.bool();
 
 		if (allowRotation)
-			angle = Random.randF(0, 45);
+			angle = FlxG.random.int(0, 360);
 
 		animation.play("note" + noteData, true);
 		animation.finishCallback = function(name) kill();
 
-		animation.curAnim.frameRate = 24 + Random.randUInt(-2, 2);
+		animation.curAnim.frameRate = 24 + FlxG.random.int(-2, 2);
 		updateHitbox();
 
 		offset.set(width * 0.3, height * 0.3);

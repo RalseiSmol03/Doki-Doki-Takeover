@@ -45,7 +45,6 @@ class GameplayCustomizeState extends MusicBeatState
 	{
 		super.create();
 
-		Character.loadaltcostume = true;
 		Character.isFestival = false;
 
 		#if FEATURE_DISCORD
@@ -242,7 +241,7 @@ class GameplayCustomizeState extends MusicBeatState
 		{
 			var seperatedScore:Array<Int> = [];
 
-			var comboSplit:Array<String> = (Random.randUInt(10, 420) + "").split('');
+			var comboSplit:Array<String> = (FlxG.random.int(10, 420) + "").split('');
 
 			// make sure theres a 0 in front or it looks weird lol!
 			if (comboSplit.length == 1)
@@ -271,9 +270,9 @@ class GameplayCustomizeState extends MusicBeatState
 				numScore.setGraphicSize(Std.int(numScore.width * 0.5));
 				numScore.updateHitbox();
 
-				numScore.acceleration.y = Random.randUInt(200, 300);
-				numScore.velocity.y -= Random.randUInt(140, 160);
-				numScore.velocity.x = Random.randF(-5, 5);
+				numScore.acceleration.y = FlxG.random.int(200, 300);
+				numScore.velocity.y -= FlxG.random.int(140, 160);
+				numScore.velocity.x = FlxG.random.float(-5, 5);
 
 				if (SaveData.ratingToggle)
 					insert(members.indexOf(strumLineNotes), numScore);

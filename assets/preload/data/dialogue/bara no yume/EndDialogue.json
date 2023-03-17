@@ -9,7 +9,6 @@
 			"name": "senpai",
 			"expression": "angry",
 			"string": "First you steal my things, and then you pull something like that?",
-			"key": "bnyEnd1",
 			"side": "left"
 		},
 		{
@@ -17,7 +16,6 @@
 			"name": "senpai",
 			"expression": "angry",
 			"string": "Who do you think you are?",
-			"key": "bnyEnd2",
 			"side": "left"
 		},
 		{
@@ -32,7 +30,6 @@
 			"name": "senpai",
 			"expression": "angry",
 			"string": "Now, step aside.",
-			"key": "bnyEnd3",
 			"side": "left"
 		},
 		{
@@ -47,7 +44,6 @@
 			"name": "monika",
 			"expression": "uhoh",
 			"string": "...ahaha.",
-			"key": "bnyEnd4",
 			"side": "right"
 		},
 		{
@@ -55,7 +51,6 @@
 			"name": "monika",
 			"expression": "uhoh",
 			"string": "I don't think I will.",
-			"key": "bnyEnd5",
 			"side": "right"
 		},
 		{
@@ -63,7 +58,6 @@
 			"name": "monika",
 			"expression": "uhoh",
 			"string": "You on the other hand-",
-			"key": "bnyEnd6",
 			"side": "right"
 		},
 		{
@@ -71,7 +65,6 @@
 			"name": "senpai",
 			"expression": "angry",
 			"string": "What are you-",
-			"key": "bnyEnd7",
 			"side": "left"
 		},
 		{

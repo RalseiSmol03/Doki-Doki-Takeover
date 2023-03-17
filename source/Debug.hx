@@ -321,12 +321,6 @@ class Debug
 			Debug.logInfo('CONSOLE: Opening $stateName state...');
 			loadState(stateName);
 		});
-		// Alternative name for above.
-		addConsoleCommand("loadState", function(stateName:String)
-		{
-			Debug.logInfo('CONSOLE: Opening $stateName state...');
-			loadState(stateName);
-		});
 	}
 
 	static function formatOutput(input:Dynamic, pos:haxe.PosInfos):Array<Dynamic>
@@ -416,7 +410,7 @@ class Debug
 					state = new FirstBootState();
 				case 'title':
 					state = new TitleState();
-				case 'thank' | 'thanks' | 'thankyou':
+				case 'thank' | 'thankyou':
 					state = new ThankyouState();
 			}
 

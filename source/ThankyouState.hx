@@ -34,8 +34,7 @@ class ThankyouState extends MusicBeatState
 
 		FlxG.sound.play(Paths.sound('flip_page', 'preload'));
 
-		funnynote = new FlxSprite(0, 0).loadGraphic(Paths.image('thankyoupoem', 'preload', true));
-		funnynote.antialiasing = SaveData.globalAntialiasing;
+		funnynote = new FlxSprite(0, 0).loadGraphic(Paths.image('thankyoupoem', 'preload'));
 		funnynote.alpha = 0.001;
 		funnynote.screenCenter(X);
 		add(funnynote);

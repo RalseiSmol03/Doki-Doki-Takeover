@@ -1,6 +1,7 @@
 package;
 
 import firetongue.Replace;
+import flixel.FlxG;
 
 using StringTools;
 
@@ -79,14 +80,6 @@ class LangUtil
 					default:
 						font = 'VCR OSD Mono';
 				}
-			case 'waifu':
-				switch (SaveData.language)
-				{
-					case 'en-US':
-						font = 'CyberpunkWaifus';
-					default:
-						font = 'LanaPixel';
-				}
 		}
 
 		return font;
@@ -106,8 +99,8 @@ class LangUtil
 					case 'jp-JP':
 						offset = -5;
 				}
-			case 'pixel' | 'waifu':
-				// none because fallbacks use LanaPixel
+			case 'pixel':
+				// none because they all use LanaPixel
 		}
 
 		return offset;

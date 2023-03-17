@@ -46,11 +46,11 @@ class FirstBootState extends MusicBeatState
 		gradient.alpha = 0.001;
 		add(gradient);
 
-		#if FEATURE_LANGUAGE
-		backdrop.alpha = 1;
-		gradient.alpha = 1;
+		FlxTween.tween(backdrop, {alpha: 1}, 0.5, {ease: FlxEase.quadOut});
+		FlxTween.tween(gradient, {alpha: 1}, 0.5, {ease: FlxEase.quadOut});
 
-		localeList = CoolUtil.coolTextFile(Paths.txt('locales/sort', 'preload'));
+		#if FEATURE_LANGUAGE
+		localeList = Main.tongue.locales;
 
 		for (i in 0...localeList.length)
 			textMenuItems.push(Main.tongue.getIndexString(Language, localeList[i]));
@@ -69,9 +69,6 @@ class FirstBootState extends MusicBeatState
 			grpOptionsTexts.add(optionText);
 		}
 		#else
-		FlxTween.tween(backdrop, {alpha: 1}, 0.5, {ease: FlxEase.quadOut});
-		FlxTween.tween(gradient, {alpha: 1}, 0.5, {ease: FlxEase.quadOut});
-
 		selectedSomethin = true;
 		bringinthenote();
 		#end
@@ -143,7 +140,7 @@ class FirstBootState extends MusicBeatState
 				{
 					if (curSelected != txt.ID)
 					{
-						FlxTween.tween(txt, {alpha: 0}, 1, {
+						FlxTween.tween(txt, {alpha: 0}, 1.3, {
 							ease: FlxEase.quadOut,
 							onComplete: function(twn:FlxTween)
 							{
@@ -161,7 +158,7 @@ class FirstBootState extends MusicBeatState
 						{
 							FlxFlicker.flicker(txt, 1, 0.06, false, false, function(flick:FlxFlicker)
 							{
-								new FlxTimer().start(0.5, function(tmr:FlxTimer)
+								new FlxTimer().start(2, function(tmr:FlxTimer)
 								{
 									bringinthenote();
 								});
@@ -171,7 +168,7 @@ class FirstBootState extends MusicBeatState
 						{
 							new FlxTimer().start(1, function(tmr:FlxTimer)
 							{
-								new FlxTimer().start(0.5, function(tmr:FlxTimer)
+								new FlxTimer().start(2, function(tmr:FlxTimer)
 								{
 									bringinthenote();
 								});
@@ -188,7 +185,7 @@ class FirstBootState extends MusicBeatState
 	{
 		FlxG.sound.play(Paths.sound('openOS', 'preload'));
 
-		funnynote = new FlxSprite(0, 0).loadGraphic(Paths.image('WelcomeBack', 'preload', true));
+		funnynote = new FlxSprite(0, 0).loadGraphic(Paths.image('WelcomeBack'));
 		funnynote.antialiasing = SaveData.globalAntialiasing;
 		funnynote.screenCenter();
 		funnynote.scale.set();
