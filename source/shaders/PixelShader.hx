@@ -30,7 +30,7 @@ class PixelShader extends FlxShader // https://www.shadertoy.com/view/4l2fDz
         vec2 uv = pixel.xy / iResolution.xy;
     
         
-        fragColor = vec4(texture(iChannel0, uv).xyz, 1.0);
+        fragColor = vec4(texture2D(iChannel0, uv).xyz, 1.0);
     }
     ')
   public function new()
