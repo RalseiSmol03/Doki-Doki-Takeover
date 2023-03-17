@@ -359,7 +359,7 @@ class CostumeSelectState extends MusicBeatState
 			}
 		}
 		//trace(charCostume);
-		Character.isFestival = false;
+
 		var barColor:FlxColor = forceColor;
 		if (costumeJSON.list[curSelected].costumes[costumeSelected].color != null && forceColor == 0xFFFDDBF1)
 			barColor = FlxColor.fromString(costumeJSON.list[curSelected].costumes[costumeSelected].color);
