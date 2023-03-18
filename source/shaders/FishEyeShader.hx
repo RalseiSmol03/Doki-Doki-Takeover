@@ -72,4 +72,3 @@ class FishEyeShader extends FlxShader // https://www.shadertoy.com/view/WsVSzV
 		this.preset = preset;
 	}
 }
-
