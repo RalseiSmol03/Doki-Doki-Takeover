@@ -298,7 +298,8 @@ class Paths
 		}
 		#end
 
-		var path:String = getPath('$folder/$key.png', IMAGE, library);
+		var assetPath:String = getPath('$folder/$key.png', IMAGE, library);
+		var gottenPath:String = assetPath.substring(assetPath.indexOf(':') + 1, assetPath.length);
 
 		if (OpenFlAssets.exists(assetPath, IMAGE))
 		{
