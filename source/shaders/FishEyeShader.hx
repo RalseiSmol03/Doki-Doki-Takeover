@@ -13,9 +13,9 @@ class FishEyeShader extends FlxShader // https://www.shadertoy.com/view/WsVSzV
 {
 		@:glFragmentSource('
 			#pragma header
-			vec2 uv = openfl_TextureCoordv.xy;
+			/*vec2 uv = openfl_TextureCoordv.xy;
 			vec2 fragCoord = openfl_TextureCoordv*openfl_TextureSize;
-			vec2 iResolution = openfl_TextureSize;
+			vec2 iResolution = openfl_TextureSize;*/
 			uniform float iTime;
 			#define iChannel0 bitmap
 			#define texture flixel_texture2D
@@ -29,7 +29,7 @@ class FishEyeShader extends FlxShader // https://www.shadertoy.com/view/WsVSzV
 			void mainImage()
 				{
 				// squared distance from center
-				vec2 uv = fragCoord/iResolution.xy;
+				vec2 uv = openfl_TextureCoordv; //fragCoord/iResolution.xy;
 				vec2 dc = abs(0.5-uv);
 				dc *= dc;
 				
@@ -43,9 +43,9 @@ class FishEyeShader extends FlxShader // https://www.shadertoy.com/view/WsVSzV
 				else
 					{
 					// determine if we are drawing in a scanline
-					float apply = abs(sin(fragCoord.y)*0.5*scan);
+					float apply = abs(sin(openfl_TextureCoordv.y*openfl_TextureSize.y)*0.5*scan);
 					// sample the texture
-					fragColor = vec4(mix(flixel_texture2D(bitmap,uv).rgb,vec3(0.0),apply),1.0);
+					fragColor = vec4(mix(texture(iChannel0,uv).rgb,vec3(0.0),apply),1.0);
 					}
 				}
 		')
