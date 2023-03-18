@@ -29,12 +29,10 @@ class Main
 			// Install libs
 			switch (lib.type)
 			{
-				case "install":
-					Sys.command('haxelib --quiet install ${lib.name} ${lib.version != null ? lib.version : ""}');
 				case "git":
 					Sys.command('haxelib --quiet git ${lib.name} ${lib.url}');
 				default:
-					Sys.println('Cannot resolve library of type "${lib.type}"');
+					Sys.command('haxelib --quiet install ${lib.name} ${lib.version != null ? lib.version : ""}');
 			}
 		}
 
