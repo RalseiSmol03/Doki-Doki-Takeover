@@ -39,6 +39,8 @@ jobs:
 
       - name: Installing Libraries
         run: |
+          haxelib setup ~/haxelib
+          haxelib install hxcpp > /dev/null --quiet
           haxelib install hmm --quiet
           haxelib run hmm install
 
