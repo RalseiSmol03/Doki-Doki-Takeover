@@ -73,4 +73,9 @@ class Main extends Sprite
 		return false;
 		#end
 	}
+
+	inline public static function alertPopup(desc:String, title:String = 'Error!')
+	{
+		Application.current.window.alert(desc, title);
+	}
 }
