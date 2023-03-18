@@ -1,65 +1,59 @@
 {
-	"dependencies":[
+	"dependencies":
+	[
 		{
-			"name":"hxcpp",
-			"type":"install",
-			"version":null
+			"name": "hxcpp",
+			"type": "haxelib"
 		},
 		{
-			"name":"lime",
-			"type":"install",
-			"version":null
+			"name": "lime",
+			"type": "haxelib"
 		},
 		{
-			"name":"openfl",
-			"type":"install",
-			"version":null
+			"name": "openfl",
+			"type": "haxelib"
 		},
 		{
-			"name":"flixel",
-			"type":"install",
-			"version":null
+			"name": "flixel",
+			"type": "haxelib"
 		},
 		{
-			"name":"flixel-addons",
-			"type":"install",
-			"version":null
+			"name": "flixel-addons",
+			"type": "haxelib"
 		},
 		{
-			"name":"flixel-ui",
-			"type":"install",
-			"version":null
+			"name": "flixel-ui",
+			"type": "haxelib"
 		},
 		{
-			"name":"flixel-tools",
-			"type":"install",
-			"version":null
+			"name": "flixel-tools",
+			"type": "haxelib"
 		},
 		{
-			"name":"firetongue",
-			"type":"install",
-			"version":null
+			"name": "firetongue",
+			"type": "haxelib"
 		},
 		{
-			"name":"hxCodec",
-			"type":"git",
-			"dir":"hxCodec",
-			"ref":"main",
-			"url":"https://github.com/polybiusproxy/hxCodec.git"
+			"name": "flxanimate",
+			"type": "haxelib"
 		},
 		{
-			"name":"discord_rpc",
-			"type":"git",
-			"dir":"discord_rpc",
-			"ref":"master",
-			"url":"https://github.com/Aidan63/linc_discord-rpc.git"
+			"name": "hxCodec",
+			"type": "git",
+			"ref": "main",
+			"url": "https://github.com/polybiusproxy/hxCodec.git"
 		},
 		{
-			"name":"extension-androidtools",
-			"type":"git",
-			"dir":"extension-androidtools",
-			"ref":"main",
-			"url":"https://github.com/MAJigsaw77/extension-androidtools.git"
+			"name": "discord_rpc",
+			"type": "git",
+			"ref": "master",
+			"url": "https://github.com/Aidan63/linc_discord-rpc.git"
+		},
+		{
+			"name": "extension-androidtools",
+			"type": "git",
+			"ref": "main",
+			"url": "https://github.com/MAJigsaw77/extension-androidtools.git"
 		}
 	]
 }
