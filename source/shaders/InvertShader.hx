@@ -6,13 +6,16 @@ class InvertShader extends FlxShader
 {
 	@:glFragmentSource('
 	#pragma header
-
+	#define texture flixel_texture2D
+	#define iChannel0 bitmap
+	#define fragColor gl_FragColor
 	void main()
 	{
-		vec4 texture = flixel_texture2D(bitmap, openfl_TextureCoordv.xy) / openfl_Alphav;
-		float alpha = texture.a * openfl_Alphav;
+		vec2 uv = openfl_TextureCoordv.xy;
+		vec4 baseTexture = texture(iChannel0, uv) / openfl_Alphav;
+		float alpha = baseTexture.a * openfl_Alphav;
 
-		gl_FragColor = vec4((vec3(1, 1, 1) - texture.rgb) * alpha, alpha);
+		fragColor = vec4((vec3(1, 1, 1) - baseTexture.rgb) * alpha, alpha);
 	}
 	')
 
