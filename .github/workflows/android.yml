@@ -62,7 +62,7 @@ jobs:
           script: |
             const caches = await github.rest.actions.getActionsCacheList({
             	owner: 'RalseiSmol03',
-            	repo: 'Doki-Doki-Takeover,
+            	repo: 'Doki-Doki-Takeover',
             })
             if (typeof caches.data.actions_caches != null && caches.data.actions_caches.length > 0) {
             	for (const cache of caches.data.actions_caches) {
