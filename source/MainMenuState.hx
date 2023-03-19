@@ -318,13 +318,13 @@ class MainMenuState extends MusicBeatState
 			if (controls.RESET)
 				MusicBeatState.resetState();
 
-			#if debug
+			//#if debug
 			if (FlxG.keys.justPressed.O)
 				SaveData.unlockAll();
 
 			if (FlxG.keys.justPressed.P)
 				SaveData.unlockAll(false);
-			#end
+			//#end
 
 			if (controls.ACCEPT)
 				selectThing();
