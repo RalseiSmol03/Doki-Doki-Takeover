@@ -41,9 +41,7 @@ class FishEyeShader extends FlxShader // https://www.shadertoy.com/view/WsVSzV
 				if (uv.y > 1.0 || uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0) {
 					vec4 finalColor = vec4(0.0,0.0,0.0,1.0);
 					fragColor = finalColor;
-				}
-				else
-					{
+				} else {
 					// determine if we are drawing in a scanline
 					float apply = abs(sin(openfl_TextureCoordv.y*openfl_TextureSize.y)*0.5*scan);
 					// sample the texture
