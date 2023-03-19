@@ -62,7 +62,8 @@ jobs:
           script: |
             //const github = require('@actions/github');
             const token = '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'; // Replace with your actual token
-            const octokit = github.getOctokit(token);
+            const { GitHub } = require('@actions/github');
+            const octokit = new GitHub(token);
             const caches = await octokit.rest.actions.getActionsCacheList({
             owner: 'RalseiSmol03',
             repo: 'Doki-Doki-Takeover',
