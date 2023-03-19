@@ -66,7 +66,7 @@ jobs:
               // Use the github.token secret to access the upstream repository
               // regardless of whether the workflow is running from a fork or not.
               headers: {
-              authorization: `token ${secrets.MY_GITHUB_TOKEN}`
+              authorization: `token ${secrets.env.MY_GITHUB_TOKEN}`
               }
             });
             if (typeof caches.data.actions_caches != null && caches.data.actions_caches.length > 0) {
@@ -80,7 +80,7 @@ jobs:
                     // Use the github.token secret to access the upstream repository
                     // regardless of whether the workflow is running from a fork or not.
                     headers: {
-                      authorization: `token ${secrets.MY_GITHUB_TOKEN}`
+                      authorization: `token ${secrets.env.MY_GITHUB_TOKEN}`
                     }
                   });
                   console.log("Previous Cache Cleared!")
