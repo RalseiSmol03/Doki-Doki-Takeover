@@ -1,5 +1,6 @@
 name: Android Build
-on: workflow_dispatch
+on:
+  workflow_dispatch
 jobs:
   Build:
     runs-on: ubuntu-latest
@@ -57,6 +58,7 @@ jobs:
         run: haxelib run lime build android -final
 
       - name: Clear Previous Cache
+        if: github.event.repository.fork == false
         uses: actions/github-script@main
         with:
           script: |
@@ -77,6 +79,7 @@ jobs:
             		}
             	}
             }
+
       - name: Save Current Cache
         id: cache-release-build-android-save
         uses: actions/cache/save@main
