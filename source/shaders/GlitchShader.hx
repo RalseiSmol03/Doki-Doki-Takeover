@@ -269,9 +269,9 @@ class GlitchShader extends FlxShader // https://www.shadertoy.com/view/XtyXzW
 		vec3 accumulator = vec3(0);
 		mat3x2 offsets = mat3x2(0);
 		for (int i = 0; i < sampleCount; i++) {
-			accumulator.r += texture(bitmap, destCoord + offsets[0]).r;
-			accumulator.g += texture(bitmap, destCoord + offsets[1]).g;
-			accumulator.b += texture(bitmap, destCoord + offsets[2]).b;
+			accumulator.r += texture(iChannel0, destCoord + offsets[0]).r;
+			accumulator.g += texture(iChannel0, destCoord + offsets[1]).g;
+			accumulator.b += texture(iChannel0, destCoord + offsets[2]).b;
 			offsets -= increments;
 		}
 		vec4 newColor = vec4(accumulator / float(sampleCount), 1.0);
