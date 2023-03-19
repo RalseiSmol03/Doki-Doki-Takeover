@@ -38,14 +38,17 @@ class FishEyeShader extends FlxShader // https://www.shadertoy.com/view/WsVSzV
    				uv.y -= 0.5; uv.y *= 1.0+(dc.x*(0.9*warp)); uv.y += 0.5;
 
 				// sample inside boundaries, otherwise set to black
-				if (uv.y > 1.0 || uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0)
-					fragColor = vec4(0.0,0.0,0.0,1.0);
+				if (uv.y > 1.0 || uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0) {
+					vec4 finalColor = vec4(0.0,0.0,0.0,1.0);
+					fragColor = finalColor;
+				}
 				else
 					{
 					// determine if we are drawing in a scanline
 					float apply = abs(sin(openfl_TextureCoordv.y*openfl_TextureSize.y)*0.5*scan);
 					// sample the texture
-					fragColor = vec4(mix(texture(iChannel0,uv).rgb,vec3(0.0),apply),1.0);
+					vec4 finalColor = vec4(mix(texture(iChannel0,uv).rgb,vec3(0.0),apply),1.0);
+					fragColor = finalColor;
 					}
 				}
 		')
