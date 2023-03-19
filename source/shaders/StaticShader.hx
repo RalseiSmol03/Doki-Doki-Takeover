@@ -24,6 +24,10 @@ class StaticShader extends FlxShader // https://www.shadertoy.com/view/ldjGzV an
   uniform vec3 iResolution;
   uniform float alpha;
 
+	#define iChannel0 bitmap
+	#define texture flixel_texture2D
+	#define fragColor gl_FragColor
+
   float vertJerkOpt = 0.0;
   float vertMovementOpt = 0.0;
   float bottomStaticOpt = 1.0;
@@ -132,17 +136,17 @@ class StaticShader extends FlxShader // https://www.shadertoy.com/view/ldjGzV an
 
       staticVal *= bottomStaticOpt;
 
-    float red 	=   flixel_texture2D(	bitmap, 	vec2(uv.x + xOffset -0.01*rgbOffsetOpt,y)).r+staticVal;
-    float green = 	flixel_texture2D(	bitmap, 	vec2(uv.x + xOffset,	  y)).g+staticVal;
-    float blue 	=	flixel_texture2D(	bitmap, 	vec2(uv.x + xOffset +0.01*rgbOffsetOpt,y)).b+staticVal;
-    float flAlpha = 	flixel_texture2D(	bitmap, 	vec2(uv.x + xOffset,	  y)).a+staticVal;
+    float red 	= texture(iChannel0, vec2(uv.x + xOffset -0.01*rgbOffsetOpt,y)).r+staticVal;
+    float green = texture(iChannel0, vec2(uv.x + xOffset, y)).g+staticVal;
+    float blue = texture(iChannel0, vec2(uv.x + xOffset +0.01*rgbOffsetOpt,y)).b+staticVal;
+    float flAlpha = texture(iChannel0, vec2(uv.x + xOffset, y)).a+staticVal;
 
     vec3 color = vec3(red,green,blue);
     float scanline = sin(uv.y*800.0)*0.04*scalinesOpt;
     color -= scanline;
 
-    vec4 baseColor = flixel_texture2D(bitmap,uv);
-    gl_FragColor = mix(vec4(color,flAlpha), baseColor, alpha);
+    vec4 baseColor = texture(iChannel0,uv);
+    fragColor = mix(vec4(color,flAlpha), baseColor, alpha);
   }
 
 
