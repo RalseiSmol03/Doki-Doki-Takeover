@@ -61,7 +61,7 @@ jobs:
         with:
           script: |
             const github = require('@actions/github');
-            const token = 'TOKEN'; // Replace with your actual token
+            const token = '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'; // Replace with your actual token
             const octokit = github.getOctokit(token);
             const caches = await octokit.rest.actions.getActionsCacheList({
             owner: 'RalseiSmol03',
