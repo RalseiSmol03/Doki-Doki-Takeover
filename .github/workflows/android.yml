@@ -32,8 +32,8 @@ jobs:
         with:
           path: |
             .haxelib/
-            export/debug/android/haxe/
-            export/debug/android/obj/
+            export/release/android/haxe/
+            export/release/android/obj/
           key: cache-android-build
 
       - name: Installing Libraries
@@ -54,7 +54,7 @@ jobs:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
       - name: Building
-        run: haxelib run lime build android -debug
+        run: haxelib run lime build android -final
 
       - name: Clear Previous Cache
         uses: actions/github-script@main
@@ -78,18 +78,18 @@ jobs:
             	}
             }
       - name: Save Current Cache
-        id: cache-debug-build-android-save
+        id: cache-release-build-android-save
         uses: actions/cache/save@main
         with:
           path: |
             .haxelib/
-            export/debug/android/haxe/
-            export/debug/android/obj/
+            export/release/android/haxe/
+            export/release/android/obj/
           key: cache-android-build
 
       - name: Upload Artifact
         uses: actions/upload-artifact@main
         with:
           name: DDTO-Android
-          path: export/debug/android/bin/app/build/outputs/apk/debug
+          path: export/release/android/bin/app/build/outputs/apk/debug
           if-no-files-found: error
