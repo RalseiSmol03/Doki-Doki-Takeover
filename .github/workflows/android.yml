@@ -56,9 +56,9 @@ jobs:
       - name: Building
         run: haxelib run lime build android -final
 
-       name: Clear Previous Cache
-       uses: actions/github-script@main
-       with:
+      - name: Clear Previous Cache
+        uses: actions/github-script@main
+        with:
           script: |
             const caches = await github.rest.actions.getActionsCacheList({
               owner: 'RalseiSmol03',
