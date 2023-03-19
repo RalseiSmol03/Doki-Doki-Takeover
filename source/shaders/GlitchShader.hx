@@ -22,10 +22,12 @@ class GlitchShader extends FlxShader // https://www.shadertoy.com/view/XtyXzW
 
 	#pragma header
 
-	vec2 uv = openfl_TextureCoordv.xy;
+	/*vec2 uv = openfl_TextureCoordv.xy;
 	vec2 fragCoord = openfl_TextureCoordv*openfl_TextureSize;
-	vec2 iResolution = openfl_TextureSize;
-
+	vec2 iResolution = openfl_TextureSize;*/
+	
+	#define iChannel0 bitmap
+	#define fragColor gl_FragColor
 	uniform float time;
 	uniform float prob;
 	uniform float intensityChromatic;
@@ -278,10 +280,10 @@ class GlitchShader extends FlxShader // https://www.shadertoy.com/view/XtyXzW
 
 	void main() {
 		// time = mod(time, 1.);
-		vec2 uv = fragCoord/iResolution.xy;
-		float alpha = texture(bitmap, uv).a;
+		vec2 uv = openfl_TextureCoordv; //fragCoord/iResolution.xy;
+		float alpha = texture(iChannel0, uv).a;
 		vec2 p = openfl_TextureCoordv.xy;
-		vec3 color = texture2D(bitmap, p).rgb;
+		vec3 color = texture2D(iChannel0, p).rgb;
 
 		glitchSwap(p);
 		// glitchTime(p, time);
@@ -291,7 +293,7 @@ class GlitchShader extends FlxShader // https://www.shadertoy.com/view/XtyXzW
 		glitchColor(p, color);
 		// color = linearToScreen(color);
 
-	    gl_FragColor = vec4(color.r * alpha, color.g * alpha, color.b * alpha, alpha);
+	    fragColor = vec4(color.r * alpha, color.g * alpha, color.b * alpha, alpha);
 	}
 	')
 
