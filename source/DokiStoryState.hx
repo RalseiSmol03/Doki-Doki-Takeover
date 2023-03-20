@@ -64,9 +64,6 @@ class DokiStoryState extends MusicBeatState
 		['sideStories', SaveData.beatProtag, 0, 0]
 	];
 
-	var story_icon:FlxSprite;
-	var dirstuff:String;
-	
 	var grpSprites:FlxSpriteGroup;
 
 	var curDifficulty:Int = 1;
@@ -98,7 +95,6 @@ class DokiStoryState extends MusicBeatState
 
 	public var acceptInput:Bool = true;
 
-	var substateOpen:Bool = false;
 	override function create()
 	{
 		allBeat = SaveData.checkAllSongsBeaten();
@@ -183,8 +179,8 @@ class DokiStoryState extends MusicBeatState
 			if (i == 8)
 				continue;
 
-			dirstuff = 'dokistory/' + icons[i][0] + 'Week';
-			story_icon = new FlxSprite(icons[i][2], icons[i][3]);
+			var dirstuff:String = 'dokistory/' + icons[i][0] + 'Week';
+			var story_icon:FlxSprite = new FlxSprite(icons[i][2], icons[i][3]);
 			if (!icons[i][1])
 				dirstuff = 'dokistory/LockedWeek';
 
@@ -200,11 +196,7 @@ class DokiStoryState extends MusicBeatState
 			// Making sure a locked week isn't selected
 			if (dirstuff != 'dokistory/LockedWeek')
 				mouseManager.add(story_icon, onMouseDown, null, onMouseOver);
-			/*if (substateOpen) {
-				mouseManager.remove(story_icon);//, onMouseDown, null, onMouseOver);
-			} else if (!substateOpen) {
-				mouseManager.add(story_icon, onMouseDown, null, onMouseOver);
-			}*/
+			
 		}
 
 		add(mouseManager);
@@ -228,10 +220,6 @@ class DokiStoryState extends MusicBeatState
 		unlockedWeeks();
 		updateSelected();
 
-		#if mobile
-		addVirtualPad(NONE, B);
-		#end
-		
 		super.create();
 	}
 	
@@ -404,22 +392,14 @@ class DokiStoryState extends MusicBeatState
 	// :) ~Codexes
 	override public function openSubState(subState:FlxSubState)
 	{
-		//remove(mouseManager); //to make the mouse manage on substate
-		mouseManager.remove(story_icon);//, onMouseDown, null, onMouseOver);
-		#if mobile
-			removeVirtualPad();
-		#end
+		remove(mouseManager);
 		super.openSubState(subState);
 	}
 
 	override public function closeSubState()
 	{
-		mouseManager.add(story_icon, onMouseDown, null, onMouseOver);
-		/*#if mobile
-			addVirtualPad(NONE, B);
-		#end*/
 		super.closeSubState();
-		//add(mouseManager);
+		add(mouseManager);
 	}
 	
 	function selectThing()
@@ -631,4 +611,3 @@ class DokiStoryState extends MusicBeatState
 		logoBl.animation.play('bump', true);
 	}
 }
-
