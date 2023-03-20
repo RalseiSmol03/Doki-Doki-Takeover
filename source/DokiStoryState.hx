@@ -64,6 +64,7 @@ class DokiStoryState extends MusicBeatState
 		['sideStories', SaveData.beatProtag, 0, 0]
 	];
 
+	var story_icon:FlxSprite;
 	var grpSprites:FlxSpriteGroup;
 
 	var curDifficulty:Int = 1;
@@ -181,7 +182,7 @@ class DokiStoryState extends MusicBeatState
 				continue;
 
 			var dirstuff:String = 'dokistory/' + icons[i][0] + 'Week';
-			var story_icon:FlxSprite = new FlxSprite(icons[i][2], icons[i][3]);
+			story_icon = new FlxSprite(icons[i][2], icons[i][3]);
 			if (!icons[i][1])
 				dirstuff = 'dokistory/LockedWeek';
 
@@ -197,11 +198,11 @@ class DokiStoryState extends MusicBeatState
 			// Making sure a locked week isn't selected
 			if (dirstuff != 'dokistory/LockedWeek')
 				mouseManager.add(story_icon, onMouseDown, null, onMouseOver);
-			if (substateOpen) {
+			/*if (substateOpen) {
 				mouseManager.remove(story_icon);//, onMouseDown, null, onMouseOver);
 			} else if (!substateOpen) {
 				mouseManager.add(story_icon, onMouseDown, null, onMouseOver);
-			}
+			}*/
 		}
 
 		add(mouseManager);
@@ -402,19 +403,19 @@ class DokiStoryState extends MusicBeatState
 	override public function openSubState(subState:FlxSubState)
 	{
 		//remove(mouseManager); //to make the mouse manage on substate
-		substateOpen = true;
-		#if mobile
+		mouseManager.remove(story_icon);//, onMouseDown, null, onMouseOver);
+		/*#if mobile
 			removeVirtualPad();
-		#end
+		#end*/
 		super.openSubState(subState);
 	}
 
 	override public function closeSubState()
 	{
-		substateOpen = false;
-		#if mobile
+		mouseManager.add(story_icon, onMouseDown, null, onMouseOver);
+		/*#if mobile
 			addVirtualPad(NONE, B);
-		#end
+		#end*/
 		super.closeSubState();
 		//add(mouseManager);
 	}
