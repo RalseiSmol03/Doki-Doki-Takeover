@@ -221,7 +221,7 @@ class DokiStoryState extends MusicBeatState
 		updateSelected();
 
 		#if mobile
-		addVirtualPad(B, NONE);
+		addVirtualPad(NONE, B);
 		#end
 		
 		super.create();
@@ -408,7 +408,7 @@ class DokiStoryState extends MusicBeatState
 	{
 		mouseManager.add(story_icon, onMouseDown, null, onMouseOver);
 		#if mobile
-			addVirtualPad(B, NONE);
+			addVirtualPad(NONE, B);
 		#end
 		super.closeSubState();
 		//add(mouseManager);
