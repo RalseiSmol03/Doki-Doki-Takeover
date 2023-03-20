@@ -22,6 +22,7 @@ class DokiSideStory extends MusicBeatSubstate
 
 	public static var sidestoryinstance:DokiSideStory;
 
+	var sideIcon:FlxSprite;
 	var mouseManagerSide:FlxMouseEventManager = new FlxMouseEventManager();
 
 	public var acceptInput:Bool = false;
@@ -60,7 +61,7 @@ class DokiSideStory extends MusicBeatSubstate
 
 		for (i in 0...songData.length)
 		{
-			var sideIcon:FlxSprite = new FlxSprite(songData[i][2], songData[i][3]).loadGraphic(Paths.image('dokistory/sidestories/sidestory_' + songData[i][0]));
+			sideIcon = new FlxSprite(songData[i][2], songData[i][3]).loadGraphic(Paths.image('dokistory/sidestories/sidestory_' + songData[i][0]));
 			sideIcon.antialiasing = SaveData.globalAntialiasing;
 			sideIcon.ID = i;
 			selectGrp.add(sideIcon);
