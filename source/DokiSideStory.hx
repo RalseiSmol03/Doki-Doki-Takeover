@@ -76,7 +76,9 @@ class DokiSideStory extends MusicBeatSubstate
 		});
 
 		changeItem();
-		
+		add(mouseManagerSide);
+		mouseManager.add(sideIcon, onMouseDown, null, onMouseOver);
+
 		#if mobile
 			addVirtualPad(NONE, B);
 			addVirtualPadCamera();
