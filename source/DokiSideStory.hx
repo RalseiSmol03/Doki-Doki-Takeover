@@ -65,6 +65,8 @@ class DokiSideStory extends MusicBeatSubstate
 			sideIcon.antialiasing = SaveData.globalAntialiasing;
 			sideIcon.ID = i;
 			selectGrp.add(sideIcon);
+			
+			mouseManagerSide.add(sideIcon, onMouseDown, null, onMouseOver);
 		}
 
 		cursor = new FlxSprite().loadGraphic(Paths.image('dokistory/sidestories/cursorsidestories'));
@@ -78,7 +80,6 @@ class DokiSideStory extends MusicBeatSubstate
 
 		changeItem();
 		add(mouseManagerSide);
-		mouseManagerSide.add(sideIcon, onMouseDown, null, onMouseOver);
 
 		#if mobile
 			addVirtualPad(NONE, B);
