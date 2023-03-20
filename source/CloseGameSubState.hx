@@ -53,7 +53,7 @@ class CloseGameSubState extends MusicBeatSubstate
 		changeItem();
 
 		#if mobile
-		addVirtualPad(LEFT_RIGHT, A_B);
+		addVirtualPad(LEFT_RIGHT, A);
 		addVirtualPadCamera();
 		#end
 	}
