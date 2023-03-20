@@ -406,11 +406,9 @@ class DokiStoryState extends MusicBeatState
 	{
 		//remove(mouseManager); //to make the mouse manage on substate
 		mouseManager.remove(story_icon);//, onMouseDown, null, onMouseOver);
-		if (subState == DokiSideStory) {
-			#if mobile
-				removeVirtualPad();
-			#end
-		}
+		#if mobile
+			removeVirtualPad();
+		#end
 		super.openSubState(subState);
 	}
 
