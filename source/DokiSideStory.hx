@@ -196,9 +196,10 @@ class DokiSideStory extends MusicBeatSubstate
 		});
 	}
 
-	function onMouseDown(spr:FlxSprite):Void
+	function selectThing()
 	{
-		if (!selectedSomethin)
+		if (songData[curSelected][1])
+		{
 			selectedSomethin = true;
 			FlxG.sound.play(Paths.sound('confirmMenu'));
 			curDifficulty = 1;
@@ -211,6 +212,14 @@ class DokiSideStory extends MusicBeatSubstate
 				{
 					loadSong(curSong);
 				}
+			story_cursor.visible = false;
+		}
+	}
+
+	function onMouseDown(spr:FlxSprite):Void
+	{
+		if (!selectedSomethin)
+			selectThing();
 	}
 
 	function onMouseOver(spr:FlxSprite):Void
