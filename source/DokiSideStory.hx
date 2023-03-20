@@ -7,6 +7,8 @@ import flixel.text.FlxText;
 import flixel.util.FlxTimer;
 import flixel.effects.FlxFlicker;
 
+import flixel.input.mouse.FlxMouseEventManager; // for mouse controls side story
+
 class DokiSideStory extends MusicBeatSubstate
 {
 	public var songData:Array<Array<Dynamic>> = [
@@ -19,6 +21,8 @@ class DokiSideStory extends MusicBeatSubstate
 	];
 
 	public static var sidestoryinstance:DokiSideStory;
+
+	var mouseManagerSide:FlxMouseEventManager = new FlxMouseEventManager();
 
 	public var acceptInput:Bool = false;
 	var cursor:FlxSprite;
@@ -72,7 +76,14 @@ class DokiSideStory extends MusicBeatSubstate
 		});
 
 		changeItem();
+		
+		#if mobile
+		addVirtualPad(B, NONE);
+		addPadCamera();
+		#end
 	}
+
+	var selectedSomethin:Bool = false;
 
 	override function update(elapsed:Float):Void
 	{
@@ -180,5 +191,30 @@ class DokiSideStory extends MusicBeatSubstate
 		{
 			LoadingState.loadAndSwitchState(new PlayState());
 		});
+	}
+
+	function onMouseDown(spr:FlxSprite):Void
+	{
+		if (!selectedSomethin)
+			selectedSomethin = true;
+			FlxG.sound.play(Paths.sound('confirmMenu'));
+			curDifficulty = 1;
+			if (curSong.toLowerCase() == "catfight") 
+				{
+					acceptInput = false;
+					openSubState(new CatfightPopup('story'));
+				}
+				else
+				{
+					loadSong(curSong);
+				}
+	}
+
+	function onMouseOver(spr:FlxSprite):Void
+	{
+		// If whatever was previously selected isn't the new selection,
+		// play the select sound
+		if (curSelected != spr.ID && !selectedSomethin)
+			FlxG.sound.play(Paths.sound('scrollMenu'));
 	}
 }
