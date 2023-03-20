@@ -64,7 +64,7 @@ class DokiSideStory extends MusicBeatSubstate
 			sideIcon.antialiasing = SaveData.globalAntialiasing;
 			sideIcon.ID = i;
 			selectGrp.add(sideIcon);
-			mouseManager.add(modText, onMouseDown, null, onMouseOver);
+			mouseManager.add(sideIcon, onMouseDown, null, onMouseOver);
 		}
 		
 		add(mouseManager);
