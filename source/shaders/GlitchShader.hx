@@ -34,21 +34,21 @@ class GlitchShader extends FlxShader // https://www.shadertoy.com/view/XtyXzW
 	const int sampleCount = 50;
 
 	float _round(float n) {
-		return floor(n + .5);
+		return floor(n + 0.5);
 	}
 
 	vec2 _round(vec2 n) {
-		return floor(n + .5);
+		return floor(n + 0.5);
 	}
 
-	vec3 tex2D(sampler2D _tex,vec2 _p)
+	/*vec3 tex2D(sampler2D _tex,vec2 _p)
 	{
 		vec3 col=texture(_tex,_p).xyz;
 		if(.5<abs(_p.x-.5)){
 			col=vec3(.1);
 		}
 		return col;
-	}
+	}*/
 
 	#define PI 3.14159265359
 	#define PHI (1.618033988749895)
@@ -318,4 +318,6 @@ class GlitchShader extends FlxShader // https://www.shadertoy.com/view/XtyXzW
 		data.time.value = [0];
 		this.preset = preset;
 	}
-}
+} 
+
+//THIS SHADER IS TOO HEAVY FOR MOBILE, I'LL EXCEPT THIS SHADER ON THE PORT!!!
