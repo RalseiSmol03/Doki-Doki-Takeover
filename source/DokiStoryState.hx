@@ -221,7 +221,7 @@ class DokiStoryState extends MusicBeatState
 		updateSelected();
 
 		#if mobile
-		addVirtualPad(LEFT_FULL, A_B);
+		addVirtualPad(B, NONE);
 		#end
 		
 		super.create();
@@ -396,14 +396,22 @@ class DokiStoryState extends MusicBeatState
 	// :) ~Codexes
 	override public function openSubState(subState:FlxSubState)
 	{
-		remove(mouseManager);
+		//remove(mouseManager); //to make the mouse manage on substate
+		mouseManager.remove(story_icon, onMouseDown, null, onMouseOver);
+		#if mobile
+			removeVirtualPad();
+		#end
 		super.openSubState(subState);
 	}
 
 	override public function closeSubState()
 	{
+		mouseManager.add(story_icon, onMouseDown, null, onMouseOver);
+		#if mobile
+			addVirtualPad(B, NONE);
+		#end
 		super.closeSubState();
-		add(mouseManager);
+		//add(mouseManager);
 	}
 	
 	function selectThing()
