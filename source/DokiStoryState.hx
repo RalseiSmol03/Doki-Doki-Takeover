@@ -411,6 +411,9 @@ class DokiStoryState extends MusicBeatState
 		if (curSelected == 8 && icons[curSelected][1])
 		{
 			FlxG.sound.play(Paths.sound('confirmMenu'));
+			#if mobile
+				removeVirtualPad();
+			#end
 			openSubState(new DokiSideStory());
 		}
 		else if (icons[curSelected][1])
