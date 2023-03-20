@@ -411,7 +411,7 @@ class DokiStoryState extends MusicBeatState
 
 	override public function closeSubState()
 	{
-		subStateOpen = false;
+		substateOpen = false;
 		#if mobile
 			addVirtualPad(NONE, B);
 		#end
