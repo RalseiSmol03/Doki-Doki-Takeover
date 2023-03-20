@@ -220,6 +220,10 @@ class DokiStoryState extends MusicBeatState
 		unlockedWeeks();
 		updateSelected();
 
+		#if mobile
+		addVirtualPad(LEFT_FULL, A_B);
+		#end
+		
 		super.create();
 	}
 	
