@@ -65,6 +65,8 @@ class DokiStoryState extends MusicBeatState
 	];
 
 	var story_icon:FlxSprite;
+	var dirstuff:String;
+	
 	var grpSprites:FlxSpriteGroup;
 
 	var curDifficulty:Int = 1;
@@ -181,7 +183,7 @@ class DokiStoryState extends MusicBeatState
 			if (i == 8)
 				continue;
 
-			var dirstuff:String = 'dokistory/' + icons[i][0] + 'Week';
+			dirstuff = 'dokistory/' + icons[i][0] + 'Week';
 			story_icon = new FlxSprite(icons[i][2], icons[i][3]);
 			if (!icons[i][1])
 				dirstuff = 'dokistory/LockedWeek';
@@ -404,9 +406,11 @@ class DokiStoryState extends MusicBeatState
 	{
 		//remove(mouseManager); //to make the mouse manage on substate
 		mouseManager.remove(story_icon);//, onMouseDown, null, onMouseOver);
-		/*#if mobile
-			removeVirtualPad();
-		#end*/
+		if (subState == DokiSideStory) {
+			#if mobile
+				removeVirtualPad();
+			#end
+		}
 		super.openSubState(subState);
 	}
 
