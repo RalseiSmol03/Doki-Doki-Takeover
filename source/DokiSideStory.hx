@@ -213,7 +213,7 @@ class DokiSideStory extends MusicBeatSubstate
 				{
 					loadSong(curSong);
 				}
-			story_cursor.visible = false;
+			//story_cursor.visible = false;
 		}
 	}
 
