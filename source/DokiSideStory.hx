@@ -78,8 +78,8 @@ class DokiSideStory extends MusicBeatSubstate
 		changeItem();
 		
 		#if mobile
-		addVirtualPad(B, NONE);
-		addPadCamera();
+		addVirtualPad(NONE, B);
+		addVirtualPadCamera();
 		#end
 	}
 
