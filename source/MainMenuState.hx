@@ -288,6 +288,9 @@ class MainMenuState extends MusicBeatState
 
 		changeItem();
 
+		#if mobile
+			addVirtualPad(NONE, A_B_X_Y);
+		#end
 		super.create();
 	}
 
@@ -319,7 +322,7 @@ class MainMenuState extends MusicBeatState
 				MusicBeatState.resetState();
 
 			//#if debug
-			if (FlxG.keys.justPressed.O)
+			if (FlxG.keys.justPressed.O #if android || virtualPad.buttonX.justPressed #end)
 				SaveData.unlockAll();
 
 			if (FlxG.keys.justPressed.P)
