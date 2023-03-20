@@ -198,7 +198,7 @@ class DokiStoryState extends MusicBeatState
 			if (dirstuff != 'dokistory/LockedWeek')
 				mouseManager.add(story_icon, onMouseDown, null, onMouseOver);
 			if (substateOpen) {
-				mouseManager.remove(story_icon, onMouseDown, null, onMouseOver);
+				mouseManager.remove(story_icon);//, onMouseDown, null, onMouseOver);
 			} else if (!substateOpen) {
 				mouseManager.add(story_icon, onMouseDown, null, onMouseOver);
 			}
@@ -402,7 +402,7 @@ class DokiStoryState extends MusicBeatState
 	override public function openSubState(subState:FlxSubState)
 	{
 		//remove(mouseManager); //to make the mouse manage on substate
-		substate = true;
+		substateOpen = true;
 		#if mobile
 			removeVirtualPad();
 		#end
@@ -411,7 +411,7 @@ class DokiStoryState extends MusicBeatState
 
 	override public function closeSubState()
 	{
-		subState = false;
+		subStateOpen = false;
 		#if mobile
 			addVirtualPad(NONE, B);
 		#end
