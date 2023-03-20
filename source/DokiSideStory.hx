@@ -7,8 +7,6 @@ import flixel.text.FlxText;
 import flixel.util.FlxTimer;
 import flixel.effects.FlxFlicker;
 
-import flixel.input.mouse.FlxMouseEventManager; // for mouse controls side story
-
 class DokiSideStory extends MusicBeatSubstate
 {
 	public var songData:Array<Array<Dynamic>> = [
@@ -21,9 +19,6 @@ class DokiSideStory extends MusicBeatSubstate
 	];
 
 	public static var sidestoryinstance:DokiSideStory;
-
-	var sideIcon:FlxSprite;
-	var mouseManagerSide:FlxMouseEventManager = new FlxMouseEventManager();
 
 	public var acceptInput:Bool = false;
 	var cursor:FlxSprite;
@@ -61,12 +56,10 @@ class DokiSideStory extends MusicBeatSubstate
 
 		for (i in 0...songData.length)
 		{
-			sideIcon = new FlxSprite(songData[i][2], songData[i][3]).loadGraphic(Paths.image('dokistory/sidestories/sidestory_' + songData[i][0]));
+			var sideIcon:FlxSprite = new FlxSprite(songData[i][2], songData[i][3]).loadGraphic(Paths.image('dokistory/sidestories/sidestory_' + songData[i][0]));
 			sideIcon.antialiasing = SaveData.globalAntialiasing;
 			sideIcon.ID = i;
 			selectGrp.add(sideIcon);
-			
-			mouseManagerSide.add(sideIcon, onMouseDown, null, onMouseOver);
 		}
 
 		cursor = new FlxSprite().loadGraphic(Paths.image('dokistory/sidestories/cursorsidestories'));
@@ -79,15 +72,7 @@ class DokiSideStory extends MusicBeatSubstate
 		});
 
 		changeItem();
-		add(mouseManagerSide);
-
-		#if mobile
-			addVirtualPad(NONE, B);
-			addVirtualPadCamera();
-		#end
 	}
-
-	var selectedSomethin:Bool = false;
 
 	override function update(elapsed:Float):Void
 	{
@@ -195,39 +180,5 @@ class DokiSideStory extends MusicBeatSubstate
 		{
 			LoadingState.loadAndSwitchState(new PlayState());
 		});
-	}
-
-	function selectThing()
-	{
-		if (songData[curSelected][1])
-		{
-			selectedSomethin = true;
-			FlxG.sound.play(Paths.sound('confirmMenu'));
-			curDifficulty = 1;
-			if (curSong.toLowerCase() == "catfight") 
-				{
-					acceptInput = false;
-					openSubState(new CatfightPopup('story'));
-				}
-				else
-				{
-					loadSong(curSong);
-				}
-			//story_cursor.visible = false;
-		}
-	}
-
-	function onMouseDown(spr:FlxSprite):Void
-	{
-		if (!selectedSomethin)
-			selectThing();
-	}
-
-	function onMouseOver(spr:FlxSprite):Void
-	{
-		// If whatever was previously selected isn't the new selection,
-		// play the select sound
-		if (curSelected != spr.ID && !selectedSomethin)
-			FlxG.sound.play(Paths.sound('scrollMenu'));
 	}
 }
