@@ -12,8 +12,8 @@ class InvertShader extends FlxShader
 	void main()
 	{
 		vec2 uv = openfl_TextureCoordv.xy;
-		vec4 baseTexture = texture(iChannel0, uv) / openfl_Alphav;
-		float alpha = baseTexture.a * openfl_Alphav;
+		vec4 baseTexture = texture(iChannel0, uv); // openfl_Alphav;
+		float alpha = baseTexture.a; //* openfl_Alphav;
 
 		fragColor = vec4((vec3(1, 1, 1) - baseTexture.rgb) * alpha, alpha);
 	}
