@@ -7,6 +7,8 @@ import flixel.text.FlxText;
 import flixel.util.FlxTimer;
 import flixel.effects.FlxFlicker;
 
+import flixel.input.mouse.FlxMouseEventManager;
+
 class DokiSideStory extends MusicBeatSubstate
 {
 	public var songData:Array<Array<Dynamic>> = [
@@ -23,6 +25,8 @@ class DokiSideStory extends MusicBeatSubstate
 	public var acceptInput:Bool = false;
 	var cursor:FlxSprite;
 	var curSelected:Int = 0;
+
+	var mouseManager:FlxMouseEventManager = new FlxMouseEventManager();
 
 	var diffSelect:Bool = false;
 	var diffText:FlxText;
@@ -60,8 +64,10 @@ class DokiSideStory extends MusicBeatSubstate
 			sideIcon.antialiasing = SaveData.globalAntialiasing;
 			sideIcon.ID = i;
 			selectGrp.add(sideIcon);
+			mouseManager.add(modText, onMouseDown, null, onMouseOver);
 		}
-
+		
+		add(mouseManager);
 		cursor = new FlxSprite().loadGraphic(Paths.image('dokistory/sidestories/cursorsidestories'));
 		cursor.antialiasing = SaveData.globalAntialiasing;
 		add(cursor);
@@ -190,5 +196,30 @@ class DokiSideStory extends MusicBeatSubstate
 		{
 			LoadingState.loadAndSwitchState(new PlayState());
 		});
+	}
+
+	function onMouseOver(spr:FlxSprite):Void
+	{
+		if (!selectedSomethin)// && acceptInput)
+		{
+			if (curSelected != spr.ID)
+			{
+				FlxG.sound.play(Paths.sound('scrollMenu'));
+				curSelected = spr.ID;
+				changeItem();
+			}
+		}
+	}
+
+	function onMouseDown(spr:FlxSprite):Void
+	{
+		if (!selectedSomethin)//&& acceptInput)
+		{
+			curDifficulty = 1;
+			if (songs[curSelected].songName.toLowerCase() == 'catfight')
+				openSubState(new CatfightPopup('freeplay'));
+			else
+				startsong();
+		}
 	}
 }
