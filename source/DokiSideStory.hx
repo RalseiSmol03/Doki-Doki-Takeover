@@ -216,11 +216,17 @@ class DokiSideStory extends MusicBeatSubstate
 	{
 		if (!selectedSomethin && acceptInput)
 		{
+			FlxG.sound.play(Paths.sound('confirmMenu'));
 			curDifficulty = 1;
-			if (songs[curSelected].songName.toLowerCase() == 'catfight')
-				openSubState(new CatfightPopup('freeplay'));
+			if (curSong.toLowerCase() == "catfight")
+			{
+				acceptInput = false;
+				openSubState(new CatfightPopup('story'));
+			}
 			else
-				startsong();
+			{
+				loadSong(curSong);
+			}
 		}
 	}
 }
