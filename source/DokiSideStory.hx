@@ -72,6 +72,10 @@ class DokiSideStory extends MusicBeatSubstate
 		});
 
 		changeItem();
+
+		#if mobile
+			addVirtualPad(LEFT_FULL, A_B);
+		#end
 	}
 
 	override function update(elapsed:Float):Void
