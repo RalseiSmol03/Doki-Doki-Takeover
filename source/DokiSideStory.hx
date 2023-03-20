@@ -25,6 +25,7 @@ class DokiSideStory extends MusicBeatSubstate
 	public var acceptInput:Bool = false;
 	var cursor:FlxSprite;
 	var curSelected:Int = 0;
+	var selectedSomethin:Bool = false;
 
 	var mouseManager:FlxMouseEventManager = new FlxMouseEventManager();
 
@@ -165,7 +166,7 @@ class DokiSideStory extends MusicBeatSubstate
 	public function loadSong(songName:String)
 	{
 		acceptInput = false;
-
+		
 		var poop:String = Highscore.formatSong(songName, curDifficulty);
 
 		try
@@ -200,7 +201,7 @@ class DokiSideStory extends MusicBeatSubstate
 
 	function onMouseOver(spr:FlxSprite):Void
 	{
-		if (!selectedSomethin)// && acceptInput)
+		if (!selectedSomethin && acceptInput)
 		{
 			if (curSelected != spr.ID)
 			{
@@ -213,7 +214,7 @@ class DokiSideStory extends MusicBeatSubstate
 
 	function onMouseDown(spr:FlxSprite):Void
 	{
-		if (!selectedSomethin)//&& acceptInput)
+		if (!selectedSomethin && acceptInput)
 		{
 			curDifficulty = 1;
 			if (songs[curSelected].songName.toLowerCase() == 'catfight')
