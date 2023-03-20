@@ -76,6 +76,10 @@ class FirstBootState extends MusicBeatState
 		bringinthenote();
 		#end
 
+		#if mobile
+			addVirtualPad(NONE, A);
+		#end
+
 		super.create();
 	}
 
