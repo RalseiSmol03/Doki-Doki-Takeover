@@ -95,7 +95,7 @@ class DokiStoryState extends MusicBeatState
 
 	public var acceptInput:Bool = true;
 
-	var substate:Bool = false;
+	var substateOpen:Bool = false;
 	override function create()
 	{
 		allBeat = SaveData.checkAllSongsBeaten();
@@ -197,9 +197,9 @@ class DokiStoryState extends MusicBeatState
 			// Making sure a locked week isn't selected
 			if (dirstuff != 'dokistory/LockedWeek')
 				mouseManager.add(story_icon, onMouseDown, null, onMouseOver);
-			if (substate) {
+			if (substateOpen) {
 				mouseManager.remove(story_icon, onMouseDown, null, onMouseOver);
-			} else if (!substate) {
+			} else if (!substateOpen) {
 				mouseManager.add(story_icon, onMouseDown, null, onMouseOver);
 			}
 		}
