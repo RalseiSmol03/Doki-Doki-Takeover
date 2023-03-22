@@ -220,6 +220,8 @@ class DokiStoryState extends MusicBeatState
 		unlockedWeeks();
 		updateSelected();
 
+		SaveData.gpuTextures = !SaveData.gpuTextures;
+
 		#if mobile
 			addVirtualPad(NONE, B);
 		#end
