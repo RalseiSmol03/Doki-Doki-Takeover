@@ -33,7 +33,7 @@ class DokiFreeplayState extends MusicBeatState
 	public static var instance:DokiFreeplayState;
 	public var acceptInput:Bool = true;
 
-	var androidControlDetect:Bool = false;
+	public var androidControlDetect:Bool = false;
 
 	public static var showPopUp:Bool = false;
 	public static var popupType:String = '';
