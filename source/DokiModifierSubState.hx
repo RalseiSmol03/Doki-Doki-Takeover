@@ -80,6 +80,11 @@ class DokiModifierSubState extends MusicBeatSubstate
 		});
 
 		changeSelection();
+
+		#if mobile
+			addVirtualPad(LEFT_RIGHT, NONE);
+			addVirtualPadCamera();
+		#end
 	}
 
 	override function update(elapsed:Float):Void
@@ -94,6 +99,10 @@ class DokiModifierSubState extends MusicBeatSubstate
 				DokiFreeplayState.instance.acceptInput = true;
 				SaveData.save();
 				close();
+				#if mobile
+					addVirtualPad(LEFT_RIGHT, NONE);
+					addVirtualPadCamera();
+				#end
 			}
 
 			if (controls.UP_P)
