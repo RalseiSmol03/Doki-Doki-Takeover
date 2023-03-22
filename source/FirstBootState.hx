@@ -95,6 +95,7 @@ class FirstBootState extends MusicBeatState
 
 			FlxTween.tween(funnynote, {"scale.x": 0, "scale.y": 0, alpha: 0}, 0.5, {ease: FlxEase.quadOut});
 			FlxTween.tween(backdrop, {alpha: 0}, 1, {ease: FlxEase.quadOut});
+			FlxTween.tween(virtualPad, {alpha: 0}, 1, {ease: FlxEase.quadOut});
 			FlxTween.tween(gradient, {alpha: 0}, 1, {
 				ease: FlxEase.quadOut,
 				onComplete: function(twn:FlxTween)
