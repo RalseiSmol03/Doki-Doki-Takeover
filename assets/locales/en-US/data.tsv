@@ -17,6 +17,7 @@ cmnEarly	Early
 cmnLate	Late
 cmnOn	On
 cmnOff	Off
+cmnOnWarning	On(Can't Mouse Choose Weeks on StoryMode)
 cmnYes	Yes
 cmnNo	No
 cmnOffset	Global Offset
