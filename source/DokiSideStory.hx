@@ -80,8 +80,6 @@ class DokiSideStory extends MusicBeatSubstate
 
 		changeItem();
 
-		SaveData.gpuTextures = !SaveData.gpuTextures;
-
 		/*#if mobile
 			addVirtualPad(NONE, B);
 			addVirtualPadCamera();
