@@ -82,10 +82,10 @@ class DokiSideStory extends MusicBeatSubstate
 
 		SaveData.gpuTextures = !SaveData.gpuTextures;
 
-		#if mobile
+		/*#if mobile
 			addVirtualPad(NONE, B);
 			addVirtualPadCamera();
-		#end
+		#end*/
 	}
 
 	override function update(elapsed:Float):Void
@@ -109,6 +109,9 @@ class DokiSideStory extends MusicBeatSubstate
 					FlxG.resetState();
 				#else*/
 				close();
+				/*#if mobile
+					removeVirtualPad();
+				#end*/
 				//#end
 			}
 
