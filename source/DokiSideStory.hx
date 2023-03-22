@@ -81,7 +81,7 @@ class DokiSideStory extends MusicBeatSubstate
 		changeItem();
 
 		#if mobile
-			addVirtualPad(LEFT_FULL, A_B);
+			addVirtualPad(NONE, B);
 			addVirtualPadCamera();
 		#end
 	}
@@ -102,7 +102,7 @@ class DokiSideStory extends MusicBeatSubstate
 			{
 				FlxG.sound.play(Paths.sound('cancelMenu'));
 				DokiStoryState.instance.acceptInput = true;
-				#if android
+				#if mobile
 					flixel.addons.transition.FlxTransitionableState.skipNextTransOut = true;
 					FlxG.resetState();
 				#else
