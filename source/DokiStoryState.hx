@@ -222,9 +222,9 @@ class DokiStoryState extends MusicBeatState
 
 		SaveData.gpuTextures = !SaveData.gpuTextures;
 
-		#if mobile
+		/*#if mobile
 			addVirtualPad(NONE, B);
-		#end
+		#end*/
 
 		super.create();
 	}
@@ -304,7 +304,7 @@ class DokiStoryState extends MusicBeatState
 			if (controls.DOWN_P)
 				changeItem(4);
 
-			if (controls.BACK)
+			if (#if android FlxG.android.justReleased.BACK #else control.BACK #end)
 			{
 				acceptInput = false;
 				FlxG.sound.play(Paths.sound('cancelMenu'));
@@ -413,9 +413,9 @@ class DokiStoryState extends MusicBeatState
 		if (curSelected == 8 && icons[curSelected][1])
 		{
 			FlxG.sound.play(Paths.sound('confirmMenu'));
-			#if mobile
+			/*#if mobile
 				removeVirtualPad();
-			#end
+			#end*/
 			openSubState(new DokiSideStory());
 		}
 		else if (icons[curSelected][1])
