@@ -307,6 +307,11 @@ class DokiFreeplayState extends MusicBeatState
 
 		add(mouseManager);
 
+		#if mobile
+			addVirtualPad(LEFT_RIGHT, B);
+			addVirtualPadCamera();
+		#end
+
 		super.create();
 	}
 
