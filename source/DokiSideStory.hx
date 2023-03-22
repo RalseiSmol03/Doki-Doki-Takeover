@@ -98,15 +98,15 @@ class DokiSideStory extends MusicBeatSubstate
 				if (FlxG.keys.pressed.P)
 					SaveData.beatSide = false;
 			#end
-			if (controls.BACK)
+			if (#if android virtualPad.buttonX.justPressed #else control.BACK)
 			{
 				FlxG.sound.play(Paths.sound('cancelMenu'));
 				DokiStoryState.instance.acceptInput = true;
-				#if mobile
+				/*#if mobile
 					flixel.addons.transition.FlxTransitionableState.skipNextTransOut = true;
 					FlxG.resetState();
-				#else
-					close();
+				#else*/
+				close();
 				#end
 			}
 
