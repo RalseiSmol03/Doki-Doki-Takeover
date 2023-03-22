@@ -37,7 +37,7 @@ descBadEnd	Experience what goes wrong in an alternate ending. (Goes to GameBanan
 descRatingToggle	Choose whether or not ratings are shown during gameplay.
 descAntialiasing	Make visuals smoother at the cost of performance.
 descMiddleOpponent	Show opponent notes
-descGPUTextures	Load textures through your GPU instead, reducing memory usage.
+descGPUTextures	Load textures through your GPU instead, reducing memory usage. (WARNING: MOUSE/TOUCH CONTROLS WILL NOT WORK ON STORYMODE!)
 descCacheCharacter	Reduce load times by caching every character on boot. (HEAVY MEMORY USAGE)
 descCacheSong	Reduce load times by caching every song on boot. (HEAVY MEMORY USAGE)
 descCache	Reduce further load times in this session by caching what was enabled above.
