@@ -88,7 +88,7 @@ class DokiModifierSubState extends MusicBeatSubstate
 
 		if (acceptInput)
 		{
-			if (controls.BACK)
+			if (#if android FlxG.android.justReleased.BACK #else controls.BACK #end)
 			{
 				FlxG.sound.play(Paths.sound('cancelMenu'));
 				DokiFreeplayState.instance.acceptInput = true;
