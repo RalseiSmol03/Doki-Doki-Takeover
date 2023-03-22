@@ -99,10 +99,11 @@ class DokiModifierSubState extends MusicBeatSubstate
 				DokiFreeplayState.instance.acceptInput = true;
 				SaveData.save();
 
-				#if mobile
+				/*#if mobile
 					DokiFreeplayState.addVirtualPad(LEFT_RIGHT, NONE);
 					DokiFreeplayState.addVirtualPadCamera();
-				#end
+				#end*/
+				DokiFreeplayState.instance.androidControlDetect = true;
 				close();
 			}
 
