@@ -98,11 +98,12 @@ class DokiModifierSubState extends MusicBeatSubstate
 				FlxG.sound.play(Paths.sound('cancelMenu'));
 				DokiFreeplayState.instance.acceptInput = true;
 				SaveData.save();
-				close();
+
 				#if mobile
-					addVirtualPad(LEFT_RIGHT, NONE);
-					addVirtualPadCamera();
+					DokiFreeplayState.addVirtualPad(LEFT_RIGHT, NONE);
+					DokiFreeplayState.addVirtualPadCamera();
 				#end
+				close();
 			}
 
 			if (controls.UP_P)
