@@ -16,6 +16,7 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import shaders.ColorMaskShader;
+import flixel.input.mouse.FlxMouseEventManager;
 
 class OptionsState extends MusicBeatState
 {
@@ -27,6 +28,8 @@ class OptionsState extends MusicBeatState
 
 	var selector:FlxText;
 	var curSelected:Int = 0;
+
+	var mouseManagerOptions:FlxMouseEventManager = new FlxMouseEventManager();
 
 	var options:Array<OptionCategory> = [
 		new OptionCategory(LangUtil.getString('catGameplay', 'option'), [
@@ -171,10 +174,14 @@ class OptionsState extends MusicBeatState
 
 		changeSelection();
 
-		#if mobile
+		/*#if mobile
 			addVirtualPad(LEFT_FULL, A_B);
 			addVirtualPadCamera();
-		#end
+		#end*/
+
+		//mouseManagerOptions.add(options, onMouseDown, null, onMouseOver); //I don't think this will work XD
+
+		//add(mouseManagerOptions);
 
 		super.create();
 	}
@@ -262,8 +269,8 @@ class OptionsState extends MusicBeatState
 			var name:String = isCat ? currentSelectedCat.getOptions()[i].getDisplay() : options[i].getName();
 
 			var controlLabel:FlxText = new FlxText(460, (45 * i) + 20, 0, name);
-			controlLabel.setFormat(LangUtil.getFont('riffic'), 36, FlxColor.WHITE, CENTER);
-			controlLabel.y += LangUtil.getFontOffset('riffic');
+			controlLabel.setFormat(LangUtil.getFont('halogen'), 36, FlxColor.WHITE, CENTER);
+			controlLabel.y += LangUtil.getFontOffset('halogen');
 
 			if (controlLabel.text == 'BAD ENDING')
 				controlLabel.setBorderStyle(OUTLINE, 0xFF444444, 2);
