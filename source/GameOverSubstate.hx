@@ -142,6 +142,11 @@ class GameOverSubstate extends MusicBeatSubstate
 				bf.playAnim('crashDeath');
 			}
 		}
+
+		#if mobile
+			addVirtualPad(NONE, A_B);
+			addVirtualPadCamera();
+		#end
 	}
 
 	override function destroy()
