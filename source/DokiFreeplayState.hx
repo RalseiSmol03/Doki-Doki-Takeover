@@ -352,7 +352,7 @@ class DokiFreeplayState extends MusicBeatState
 			{
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 				#if mobile
-					removeVirtualPad();
+					//removeVirtualPad();
 				#end
 				openSubState(new DokiModifierSubState());
 			}
