@@ -179,14 +179,13 @@ class OptionsState extends MusicBeatState
 			addVirtualPadCamera();
 		#end*/
 
-		//mouseManagerOptions.add(options, onMouseDown, null, onMouseOver); //I don't think this will work XD
-
 		//add(mouseManagerOptions);
 
 		super.create();
 	}
 
 	var isCat:Bool = false;
+	var selectedSomethin:Bool = false;
 
 	override function update(elapsed:Float)
 	{
@@ -222,33 +221,7 @@ class OptionsState extends MusicBeatState
 
 			if (controls.ACCEPT)
 			{
-				if (isCat)
-				{
-					if (currentSelectedCat.getOptions()[curSelected].press())
-					{
-						grpControls.remove(grpControls.members[curSelected]);
-						var ctrl:FlxText = new FlxText(460, (45 * curSelected) + 20, 0, currentSelectedCat.getOptions()[curSelected].getDisplay());
-						ctrl.setFormat(LangUtil.getFont('riffic'), 36, FlxColor.WHITE, CENTER);
-						ctrl.y += LangUtil.getFontOffset('riffic');
-
-						if (ctrl.text == 'BAD ENDING')
-							ctrl.setBorderStyle(OUTLINE, 0xFF444444, 2);
-						else
-							ctrl.setBorderStyle(OUTLINE, 0xFFFF7CFF, 2);
-
-						ctrl.antialiasing = SaveData.globalAntialiasing;
-						ctrl.ID = curSelected;
-						grpControls.add(ctrl);
-					}
-				}
-				else
-				{
-					currentSelectedCat = options[curSelected];
-					isCat = true;
-					generateOptions();
-				}
-
-				changeSelection();
+				acceptOption();
 			}
 		}
 
@@ -269,8 +242,8 @@ class OptionsState extends MusicBeatState
 			var name:String = isCat ? currentSelectedCat.getOptions()[i].getDisplay() : options[i].getName();
 
 			var controlLabel:FlxText = new FlxText(460, (45 * i) + 20, 0, name);
-			controlLabel.setFormat(LangUtil.getFont('halogen'), 36, FlxColor.WHITE, CENTER);
-			controlLabel.y += LangUtil.getFontOffset('halogen');
+			controlLabel.setFormat(LangUtil.getFont('riffic'), 36, FlxColor.WHITE, CENTER);
+			controlLabel.y += LangUtil.getFontOffset('riffic');
 
 			if (controlLabel.text == 'BAD ENDING')
 				controlLabel.setBorderStyle(OUTLINE, 0xFF444444, 2);
@@ -280,6 +253,8 @@ class OptionsState extends MusicBeatState
 			controlLabel.antialiasing = SaveData.globalAntialiasing;
 			controlLabel.ID = i;
 			grpControls.add(controlLabel);
+
+			mouseManagerOptions.add(controlLabel, onMouseDown, null, onMouseOver); //I don't think this will work XD
 		}
 
 		curSelected = 0;
@@ -357,5 +332,55 @@ class OptionsState extends MusicBeatState
 	{
 		super.beatHit();
 		logoBl.animation.play('bump', true);
+	}
+
+	function onMouseDown(spr:FlxSprite):Void
+	{
+		if (!selectedSomethin && acceptInput)
+			acceptInput = false;
+			selectedSomethin = true;
+			acceptOption();
+	}
+
+	function onMouseOver(spr:FlxSprite):Void
+	{
+		if (!selectedSomethin && acceptInput)
+		{
+			if (curSelected != txt.ID)
+				FlxG.sound.play(Paths.sound('scrollMenu'));
+	
+			if (!selectedSomethin)
+				curSelected = txt.ID;
+		}
+
+		changeSelection();
+	}
+
+	function acceptOption() {
+		if (isCat) {
+			if (currentSelectedCat.getOptions()[curSelected].press()) {
+				grpControls.remove(grpControls.members[curSelected]);
+				var ctrl:FlxText = new FlxText(460, (45 * curSelected) + 20, 0, currentSelectedCat.getOptions()[curSelected].getDisplay());
+				ctrl.setFormat(LangUtil.getFont('riffic'), 36, FlxColor.WHITE, CENTER);
+				ctrl.y += LangUtil.getFontOffset('riffic');
+
+				if (ctrl.text == 'BAD ENDING')
+					ctrl.setBorderStyle(OUTLINE, 0xFF444444, 2);
+				else
+					ctrl.setBorderStyle(OUTLINE, 0xFFFF7CFF, 2);
+
+				ctrl.antialiasing = SaveData.globalAntialiasing;
+				ctrl.ID = curSelected;
+				grpControls.add(ctrl);
+			}
+		}
+		else
+		{
+			currentSelectedCat = options[curSelected];
+			isCat = true;
+			generateOptions();
+		}
+
+		changeSelection();
 	}
 }
