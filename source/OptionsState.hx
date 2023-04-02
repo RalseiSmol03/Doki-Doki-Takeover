@@ -334,7 +334,7 @@ class OptionsState extends MusicBeatState
 		logoBl.animation.play('bump', true);
 	}
 
-	function onMouseDown(spr:FlxSprite):Void
+	function onMouseDown(txt:FlxText):Void
 	{
 		if (!selectedSomethin && acceptInput)
 			acceptInput = false;
@@ -342,7 +342,7 @@ class OptionsState extends MusicBeatState
 			acceptOption();
 	}
 
-	function onMouseOver(spr:FlxSprite):Void
+	function onMouseOver(txt:FlxText):Void
 	{
 		if (!selectedSomethin && acceptInput)
 		{
