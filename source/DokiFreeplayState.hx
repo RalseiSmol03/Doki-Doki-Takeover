@@ -483,7 +483,7 @@ class DokiFreeplayState extends MusicBeatState
 			androidControlDetect = true;
 		}*/ //tried,but not fully working
 
-		if (!virtualPad.exists()) {
+		if (virtualPad == null) {
 			#if mobile
 			// Add a virtual pad if none exists
 				addVirtualPad(LEFT_RIGHT, NONE);
