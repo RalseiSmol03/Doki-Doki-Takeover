@@ -475,12 +475,20 @@ class DokiFreeplayState extends MusicBeatState
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
 
-		if (!androidControlDetect) {
+		/*if (!androidControlDetect) {
 			#if mobile
 				addVirtualPad(LEFT_RIGHT, NONE);
 				addVirtualPadCamera();
 			#end
 			androidControlDetect = true;
+		}*/ //tried,but not fully working
+
+		if (!virtualPad.exists()) {
+			#if mobile
+			// Add a virtual pad if none exists
+				addVirtualPad(LEFT_RIGHT, NONE);
+				addVirtualPadCamera();
+			#end
 		}
 		super.update(elapsed);
 	}
