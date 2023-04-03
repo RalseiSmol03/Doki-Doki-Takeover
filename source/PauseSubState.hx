@@ -20,6 +20,8 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
 import flixel.util.FlxColor;
 
+import flixel.input.mouse.FlxMouseEventManager;
+
 using StringTools;
 
 class PauseSubState extends MusicBeatSubstate
@@ -68,6 +70,9 @@ class PauseSubState extends MusicBeatSubstate
 	private var curPos:Float = 0;
 	private var curBPM:Float = 0;
 	*/
+
+	var mouseManager:FlxMouseEventManager = new FlxMouseEventManager();
+	public var acceptInput:Bool = true;
 
 	public function new(?forcePauseArt:String)
 	{
@@ -243,6 +248,8 @@ class PauseSubState extends MusicBeatSubstate
 			songText.ID = i;
 			grpMenuShit.add(songText);
 
+			mouseManager.add(somgText, onMouseDown, null, onMouseOver);
+
 			FlxTween.tween(songText, {x: textX}, 1.2 + (i * 0.2), {
 				ease: FlxEase.elasticOut
 			});
@@ -321,6 +328,8 @@ class PauseSubState extends MusicBeatSubstate
 			addVirtualPadCamera();
 		#end
 	}
+
+	var selectedSomethin:Bool = false;
 
 	override function update(elapsed:Float)
 	{
@@ -403,55 +412,7 @@ class PauseSubState extends MusicBeatSubstate
 
 		if (accepted && canPress)
 		{
-			var daSelected:String = menuItems[curSelected];
-
-			switch (daSelected)
-			{
-				case "Resume":
-					closeMenu();
-				case "Restart Song":
-					MusicBeatState.resetState();
-				case "Change Difficulty":
-					menuItems = difficultyChoices;
-					regenMenu();
-				case "Practice Mode":
-					PlayState.practiceMode = !PlayState.practiceMode;
-					practiceText.visible = PlayState.practiceMode;
-					speedText.visible = PlayState.practiceMode;
-				case "Exit to Menu":
-					PlayState.sectionStart = false;
-					PlayState.mirrormode = false;
-					PlayState.chartingMode = false;
-					PlayState.practiceMode = false;
-					PlayState.practiceModeToggled = false;
-					PlayState.showCutscene = true;
-					PlayState.deathCounter = 0;
-					Conductor.playbackSpeed = 1;
-					PlayState.toggleBotplay = false;
-					PlayState.ForceDisableDialogue = false;
-
-					if (PlayState.isStoryMode)
-						MusicBeatState.switchState(new DokiStoryState());
-					else
-						MusicBeatState.switchState(new DokiFreeplayState());
-				case "Easy" | "Normal" | "Hard":
-					try
-					{
-						PlayState.SONG = Song.loadFromJson(Highscore.formatSong(PlayState.SONG.song, curSelected),
-							PlayState.SONG.song.toLowerCase());
-						PlayState.storyDifficulty = curSelected;
-					}
-					catch (e)
-					{
-						PlayState.SONG = Song.loadFromJson(Highscore.formatSong(PlayState.SONG.song, 2),
-							PlayState.SONG.song.toLowerCase());
-						PlayState.storyDifficulty = 2;
-					}
-					MusicBeatState.resetState();
-				case "Back":
-					menuItems = pauseOG;
-					regenMenu();
-			}
+			acceptSelection();
 		}
 	}
 
@@ -620,4 +581,78 @@ class PauseSubState extends MusicBeatSubstate
 		logoBl.animation.play('bump', true);
 	}
 	*/
+
+	function onMouseDown(spr:FlxSprite):Void
+	{
+		if (!selectedSomethin && acceptInput)
+			acceptSelection();
+	}
+
+	function onMouseOver(txt:FlxText):Void
+	{
+		if (!selectedSomethin && acceptInput)
+		{
+			if (curSelected != txt.ID)
+				FlxG.sound.play(Paths.sound('scrollMenu'));
+	
+			if (!selectedSomethin)
+				curSelected = txt.ID;
+		}
+
+		changeSelection();
+	}
+
+	function acceptSelection() {
+		acceptInput = false;
+		selectedSomethin = true;
+		var daSelected:String = menuItems[curSelected];
+
+		switch (daSelected)
+		{
+			case "Resume":
+				closeMenu();
+			case "Restart Song":
+				MusicBeatState.resetState();
+			case "Change Difficulty":
+				menuItems = difficultyChoices;
+				regenMenu();
+			case "Practice Mode":
+				PlayState.practiceMode = !PlayState.practiceMode;
+				practiceText.visible = PlayState.practiceMode;
+				speedText.visible = PlayState.practiceMode;
+			case "Exit to Menu":
+				PlayState.sectionStart = false;
+				PlayState.mirrormode = false;
+				PlayState.chartingMode = false;
+				PlayState.practiceMode = false;
+				PlayState.practiceModeToggled = false;
+				PlayState.showCutscene = true;
+				PlayState.deathCounter = 0;
+				Conductor.playbackSpeed = 1;
+				PlayState.toggleBotplay = false;
+				PlayState.ForceDisableDialogue = false;
+
+			if (PlayState.isStoryMode)
+					MusicBeatState.switchState(new DokiStoryState());
+				else
+					MusicBeatState.switchState(new DokiFreeplayState());
+			case "Easy" | "Normal" | "Hard":
+				try
+				{
+					PlayState.SONG = Song.loadFromJson(Highscore.formatSong(PlayState.SONG.song, curSelected),
+						PlayState.SONG.song.toLowerCase());
+					PlayState.storyDifficulty = curSelected;
+				}
+				catch (e)
+				{
+					PlayState.SONG = Song.loadFromJson(Highscore.formatSong(PlayState.SONG.song, 2),
+						PlayState.SONG.song.toLowerCase());
+					PlayState.storyDifficulty = 2;
+				}
+				MusicBeatState.resetState();
+			case "Back":
+			menuItems = pauseOG;
+				regenMenu();
+		}
+	}
 }
