@@ -174,10 +174,10 @@ class OptionsState extends MusicBeatState
 
 		changeSelection();
 
-		/*#if mobile
+		#if mobile
 			addVirtualPad(LEFT_FULL, A_B);
 			addVirtualPadCamera();
-		#end*/
+		#end
 
 		//add(mouseManagerOptions);
 
