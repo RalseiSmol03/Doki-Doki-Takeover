@@ -242,8 +242,8 @@ class OptionsState extends MusicBeatState
 			var name:String = isCat ? currentSelectedCat.getOptions()[i].getDisplay() : options[i].getName();
 
 			var controlLabel:FlxText = new FlxText(460, (45 * i) + 20, 0, name);
-			controlLabel.setFormat(LangUtil.getFont('riffic'), 36, FlxColor.WHITE, CENTER);
-			controlLabel.y += LangUtil.getFontOffset('riffic');
+			controlLabel.setFormat(LangUtil.getFont('halogen'), 36, FlxColor.WHITE, CENTER);
+			controlLabel.y += LangUtil.getFontOffset('halogen');
 
 			if (controlLabel.text == 'BAD ENDING')
 				controlLabel.setBorderStyle(OUTLINE, 0xFF444444, 2);
@@ -361,8 +361,8 @@ class OptionsState extends MusicBeatState
 			if (currentSelectedCat.getOptions()[curSelected].press()) {
 				grpControls.remove(grpControls.members[curSelected]);
 				var ctrl:FlxText = new FlxText(460, (45 * curSelected) + 20, 0, currentSelectedCat.getOptions()[curSelected].getDisplay());
-				ctrl.setFormat(LangUtil.getFont('riffic'), 36, FlxColor.WHITE, CENTER);
-				ctrl.y += LangUtil.getFontOffset('riffic');
+				ctrl.setFormat(LangUtil.getFont('halogen'), 36, FlxColor.WHITE, CENTER);
+				ctrl.y += LangUtil.getFontOffset('halogen');
 
 				if (ctrl.text == 'BAD ENDING')
 					ctrl.setBorderStyle(OUTLINE, 0xFF444444, 2);
