@@ -248,7 +248,7 @@ class PauseSubState extends MusicBeatSubstate
 			songText.ID = i;
 			grpMenuShit.add(songText);
 
-			mouseManager.add(somgText, onMouseDown, null, onMouseOver);
+			mouseManager.add(songText, onMouseDown, null, onMouseOver);
 
 			FlxTween.tween(songText, {x: textX}, 1.2 + (i * 0.2), {
 				ease: FlxEase.elasticOut
