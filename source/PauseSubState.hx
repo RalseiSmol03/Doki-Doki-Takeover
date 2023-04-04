@@ -327,6 +327,8 @@ class PauseSubState extends MusicBeatSubstate
 			addVirtualPad(LEFT_FULL, A_B);
 			addVirtualPadCamera();
 		#end
+
+		add(mouseManager);
 	}
 
 	var selectedSomethin:Bool = false;
@@ -539,6 +541,7 @@ class PauseSubState extends MusicBeatSubstate
 			songText.setBorderStyle(OUTLINE, 0xFFFF7CFF, 2);
 			songText.ID = i;
 			grpMenuShit.add(songText);
+			mouseManager.add(songText, onMouseDown, null, onMouseOver);
 		}
 
 		if (isLibitina)
