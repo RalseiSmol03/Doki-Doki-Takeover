@@ -254,6 +254,7 @@ class PauseSubState extends MusicBeatSubstate
 				ease: FlxEase.elasticOut
 			});
 		}
+		add(mouseManager);
 
 		globalSongOffset = new FlxText(5, FlxG.height - 42, 0, LangUtil.getString('cmnOffset') + ': ${SaveData.offset} ms', 12);
 		globalSongOffset.alpha = 0;
@@ -327,8 +328,6 @@ class PauseSubState extends MusicBeatSubstate
 			addVirtualPad(LEFT_FULL, A_B);
 			addVirtualPadCamera();
 		#end
-
-		add(mouseManager);
 	}
 
 	var selectedSomethin:Bool = false;
@@ -543,6 +542,7 @@ class PauseSubState extends MusicBeatSubstate
 			grpMenuShit.add(songText);
 			mouseManager.add(songText, onMouseDown, null, onMouseOver);
 		}
+		add(mouseManager);
 
 		if (isLibitina)
 		{
@@ -585,10 +585,11 @@ class PauseSubState extends MusicBeatSubstate
 	}
 	*/
 
-	function onMouseDown(spr:FlxSprite):Void
+	function onMouseDown(txt:FlxText):Void
 	{
 		if (!selectedSomethin && acceptInput)
 			acceptSelection();
+			//FlxG.sound.play(Paths.sound('scrollMenu'));
 	}
 
 	function onMouseOver(txt:FlxText):Void
