@@ -242,7 +242,7 @@ class PauseSubState extends MusicBeatSubstate
 		for (i in 0...menuItems.length)
 		{
 			var songText:FlxText = new FlxText(-350, 370 + (i * 50), 0, LangUtil.getString(menuItems[i].toLowerCase(), 'pause'));
-			songText.setFormat(LangUtil.getFont('riffic'), 27, FlxColor.WHITE, LEFT);
+			songText.setFormat(LangUtil.getFont('halogen'), 27, FlxColor.WHITE, LEFT);
 			songText.antialiasing = SaveData.globalAntialiasing;
 			songText.setBorderStyle(OUTLINE, itmColor, 2);
 			songText.ID = i;
@@ -254,7 +254,6 @@ class PauseSubState extends MusicBeatSubstate
 				ease: FlxEase.elasticOut
 			});
 		}
-		add(mouseManager);
 
 		globalSongOffset = new FlxText(5, FlxG.height - 42, 0, LangUtil.getString('cmnOffset') + ': ${SaveData.offset} ms', 12);
 		globalSongOffset.alpha = 0;
@@ -324,8 +323,10 @@ class PauseSubState extends MusicBeatSubstate
 
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
 
+		add(mouseManager);
+		
 		#if mobile
-			addVirtualPad(LEFT_FULL, A_B);
+			addVirtualPad(LEFT_RIGHT, NONE);
 			addVirtualPadCamera();
 		#end
 	}
@@ -535,14 +536,13 @@ class PauseSubState extends MusicBeatSubstate
 		for (i in 0...menuItems.length)
 		{
 			var songText:FlxText = new FlxText(50, 370 + (i * 50), 0, LangUtil.getString(menuItems[i].toLowerCase(), 'pause'));
-			songText.setFormat(LangUtil.getFont('riffic'), 27, FlxColor.WHITE, LEFT);
+			songText.setFormat(LangUtil.getFont('halogen'), 27, FlxColor.WHITE, LEFT);
 			songText.antialiasing = SaveData.globalAntialiasing;
 			songText.setBorderStyle(OUTLINE, 0xFFFF7CFF, 2);
 			songText.ID = i;
 			grpMenuShit.add(songText);
-			mouseManager.add(songText, onMouseDown, null, onMouseOver);
+			//mouseManager.add(songText, onMouseDown, null, onMouseOver);
 		}
-		add(mouseManager);
 
 		if (isLibitina)
 		{
@@ -585,7 +585,7 @@ class PauseSubState extends MusicBeatSubstate
 	}
 	*/
 
-	function onMouseDown(txt:FlxText):Void
+	function onMouseDown(spr:FlxSprite):Void
 	{
 		if (!selectedSomethin && acceptInput)
 			acceptSelection();
@@ -598,17 +598,15 @@ class PauseSubState extends MusicBeatSubstate
 		{
 			if (curSelected != txt.ID)
 				FlxG.sound.play(Paths.sound('scrollMenu'));
-	
-			if (!selectedSomethin)
 				curSelected = txt.ID;
+				changeSelection();
+			//if (!selectedSomethin)
 		}
-
-		changeSelection();
 	}
 
 	function acceptSelection() {
 		acceptInput = false;
-		selectedSomethin = true;
+		//selectedSomethin = true;
 		var daSelected:String = menuItems[curSelected];
 
 		switch (daSelected)
