@@ -61,7 +61,7 @@ class MusicBeatState extends FlxUIState
 
 	public function removeVirtualPad():Void
 	{
-		if (tsVirtualPad.length > 0)
+		if (trackedInputsVirtualPad.length > 0)
 			controls.removeVirtualControlsInput(trackedInputsVirtualPad);
 
 		if (virtualPad != null)
