@@ -310,8 +310,8 @@ class DokiFreeplayState extends MusicBeatState
 		add(mouseManager);
 
 		#if mobile
-			addVirtualPad(LEFT_RIGHT, NONE);
-			addVirtualPadCamera(false);
+			addVirtualPadFP(LEFT_RIGHT, NONE);
+			addVirtualPadFPCamera();
 		#end
 
 		super.create();
@@ -352,7 +352,7 @@ class DokiFreeplayState extends MusicBeatState
 			{
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 				#if mobile
-					//removeVirtualPad();
+					//removealPad();
 				#end
 				openSubState(new DokiModifierSubState());
 			}
