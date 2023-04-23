@@ -309,10 +309,10 @@ class DokiFreeplayState extends MusicBeatState
 
 		add(mouseManager);
 
-		/*#if mobile
+		#if mobile
 			addVirtualPad(LEFT_RIGHT, NONE);
-			addVirtualPadCamera();
-		#end*/
+			addVirtualPadCamera(false);
+		#end
 
 		super.create();
 	}
@@ -483,13 +483,13 @@ class DokiFreeplayState extends MusicBeatState
 			androidControlDetect = true;
 		}*/ //tried,but not fully working
 
-		if (virtualPad == null) {
+		/*if (virtualPad == null) {
 			#if mobile
 			// Add a virtual pad if none exists
 				addVirtualPad(LEFT_RIGHT, NONE);
 				addVirtualPadCamera();
 			#end
-		}
+		}*/ //this too
 		super.update(elapsed);
 	}
 
