@@ -61,7 +61,7 @@ class MusicBeatState extends FlxUIState
 
 	public function removeVirtualPad():Void
 	{
-		if (trackedInputsVirtualPad.length > 0)
+		if (tsVirtualPad.length > 0)
 			controls.removeVirtualControlsInput(trackedInputsVirtualPad);
 
 		if (virtualPad != null)
@@ -106,7 +106,7 @@ class MusicBeatState extends FlxUIState
 	public function addVirtualPadFP(DPad:FlxDPadMode, Action:FlxActionMode, ?visible = true):Void
 	{
 		if (virtualPadFP != null)
-			removeVirtualPad();
+			removeVirtualPadFP();
 
 		virtualPadFP = new FlxVirtualPad(DPad, Action);
 		virtualPadFP.visible = visible;
@@ -145,6 +145,9 @@ class MusicBeatState extends FlxUIState
 
 		if (trackedInputsVirtualPad.length > 0)
 			controls.removeVirtualControlsInput(trackedInputsVirtualPad);
+
+		if (trackedInputsVirtualPadFP.length > 0)
+			controls.removeVirtualControlsInput(trackedInputsVirtualPadFP);
 		#end
 
 		super.destroy();
