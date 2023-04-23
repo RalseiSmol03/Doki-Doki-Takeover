@@ -536,7 +536,7 @@ class PauseSubState extends MusicBeatSubstate
 		for (i in 0...menuItems.length)
 		{
 			var songText:FlxText = new FlxText(50, 370 + (i * 50), 0, LangUtil.getString(menuItems[i].toLowerCase(), 'pause'));
-			songText.setFormat(LangUtil.getFont('halogen'), 27, FlxColor.WHITE, LEFT);
+			songText.setFormat(LangUtil.getFont('riffic'), 27, FlxColor.WHITE, LEFT);
 			songText.antialiasing = SaveData.globalAntialiasing;
 			songText.setBorderStyle(OUTLINE, 0xFFFF7CFF, 2);
 			songText.ID = i;
