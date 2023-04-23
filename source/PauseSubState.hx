@@ -605,7 +605,7 @@ class PauseSubState extends MusicBeatSubstate
 	}
 
 	function acceptSelection() {
-		acceptInput = false;
+		//acceptInput = false;
 		//selectedSomethin = true;
 		var daSelected:String = menuItems[curSelected];
 
