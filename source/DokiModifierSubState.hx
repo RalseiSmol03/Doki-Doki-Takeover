@@ -81,10 +81,10 @@ class DokiModifierSubState extends MusicBeatSubstate
 
 		changeSelection();
 
-		/*#if mobile
+		#if mobile
 			addVirtualPad(LEFT_RIGHT, NONE);
 			addVirtualPadCamera();
-		#end*/
+		#end
 	}
 
 	override function update(elapsed:Float):Void
